@@ -5,23 +5,22 @@ jdroid is an application framework for Android and Java apps.
 
 jdroid Java
 -----------
-* Utilities for Collections, Strings, Dates, Files, Encryption, Threads, Logging, Validations, Reflections and more.
 * HTTP Service Layer
 * JSON & Plain text parsers
 * JSON marshallers
 * Mail Service
 * Exception handling
+* Utilities for Collections, Strings, Dates, Files, Encryption, Threads, Logging, Validations, Reflections and more.
 
 
 jdroid Java Web
 ---------------
-* RestEasy controllers and utilities
-* Hibernate base repository
+* RestEasy integration
+* Hibernate integration
 * Facebook integration
-* Logging utilities
 * Generic push framework. Google Cloud Messaging implementation.
 * Pagination and filtering support
-* Utilities for Collections, CSV, Files, Reflection, Guava and more.
+* Utilities for Collections, CSV, Files, Reflection, Guava, Logging and more.
 
 
 jdroid Android
@@ -33,16 +32,15 @@ jdroid Android
 * AdMob integration
 * Facebook integration
 * Twitter integration
-* GPS utilities
-* Maps balloon component
+* Base Activity & Fragment implementations
+* Exception handling
+* HTTP Service Layer. Cookies.
 * Remote image loading component
 * Disk & Memory Images Cache
-* Exception Handler
-* Base Activity & Fragment implementations
+* Maps balloon component
 * Picture import (From camera or gallery) component
 * Barcode reading component
-* HTTP Service Layer. Cookies.
 * Coverflow component
 * Voice Recognizer component
-* Utilities for Alarms, Bitmaps, Notifications, Shared Preferences, Toasts, Sounds and more.
+* Utilities for Alarms, Bitmaps, Notifications, Shared Preferences, Toasts, Sounds GPS, and more.
 
