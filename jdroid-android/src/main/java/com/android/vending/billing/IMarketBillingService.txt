@@ -1,0 +1,11 @@
+/*
+ * Rename this file extension to .aidl if you want that the ADT plugin autogenerates the java file
+ */
+package com.android.vending.billing;
+
+import android.os.Bundle;
+
+interface IMarketBillingService {
+    /** Given the arguments in bundle form, returns a bundle for results. */
+    Bundle sendBillingRequest(in Bundle bundle);
+}

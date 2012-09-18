@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<dimen name="contextual_list_item_icon_size">36dip</dimen>
+
+	<!-- About Dialog -->
+	<dimen name="aboutDialogTitleTextSize">20sp</dimen>
+	<dimen name="aboutDialogTextSize">16sp</dimen>
+
+</resources>
