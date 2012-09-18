@@ -42,5 +42,5 @@ jdroid Android
 * Barcode reading component
 * Coverflow component
 * Voice Recognizer component
-* Utilities for Alarms, Bitmaps, Notifications, Shared Preferences, Toasts, Sounds GPS, and more.
+* Utilities for Alarms, Bitmaps, Notifications, Shared Preferences, Toasts, Sounds, GPS, and more.
 
