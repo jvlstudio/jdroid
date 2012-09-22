@@ -12,6 +12,14 @@ jdroid Java
 * Exception handling
 * Utilities for Collections, Strings, Dates, Files, Encryption, Threads, Logging, Validations, Reflections and more.
 
+If you are a Maven user you can add this library as a dependency. Simply add the following to your
+`pom.xml`:
+
+    <dependency>
+        <groupId>com.jdroid</groupId>
+        <artifactId>jdroid-java</artifactId>
+        <version>1.0.0</version>
+    </dependency>
 
 jdroid Java Web
 ---------------
