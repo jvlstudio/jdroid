@@ -8,8 +8,6 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import com.google.analytics.tracking.android.GoogleAnalytics;
-import com.google.analytics.tracking.android.Tracker;
 import com.google.android.gcm.GCMRegistrar;
 import com.google.inject.AbstractModule;
 import com.google.inject.util.Modules;
@@ -89,7 +87,8 @@ public abstract class AbstractApplication extends RoboApplication {
 		
 		initGCM();
 		
-		initAnalytics();
+		// TODO This is not working on the analytics beta3
+		// initAnalytics();
 	}
 	
 	/**
@@ -161,14 +160,14 @@ public abstract class AbstractApplication extends RoboApplication {
 		}
 	}
 	
-	private void initAnalytics() {
-		if (isAnalyticsEnabled()) {
-			GoogleAnalytics googleAnalytics = GoogleAnalytics.getInstance(getApplicationContext());
-			Tracker defaultTracker = googleAnalytics.getTracker(applicationContext.getAnalyticsTrackingId());
-			googleAnalytics.setDefaultTracker(defaultTracker);
-			// googleAnalytics.setDebug(true);
-		}
-	}
+	// private void initAnalytics() {
+	// if (isAnalyticsEnabled()) {
+	// GoogleAnalytics googleAnalytics = GoogleAnalytics.getInstance(getApplicationContext());
+	// Tracker defaultTracker = googleAnalytics.getTracker(applicationContext.getAnalyticsTrackingId());
+	// googleAnalytics.setDefaultTracker(defaultTracker);
+	// // googleAnalytics.setDebug(true);
+	// }
+	// }
 	
 	/**
 	 * @return the bitmapLruCache
