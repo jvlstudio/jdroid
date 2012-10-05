@@ -165,8 +165,8 @@ public abstract class StringUtils {
 					if (maxCharacters <= StringUtils.ELLIPSIS.length()) {
 						truncatedTextBuilder.append(text.substring(0, maxCharacters));
 					} else {
-						truncatedTextBuilder.append(text.substring(0, maxCharacters - StringUtils.ELLIPSIS.length())
-								+ StringUtils.ELLIPSIS);
+						truncatedTextBuilder.append(text.substring(0, maxCharacters - StringUtils.ELLIPSIS.length()));
+						truncatedTextBuilder.append(StringUtils.ELLIPSIS);
 					}
 				} else {
 					

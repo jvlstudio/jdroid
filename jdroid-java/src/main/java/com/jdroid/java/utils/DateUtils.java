@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 import com.jdroid.java.exception.UnexpectedException;
 
 /**
@@ -100,6 +101,34 @@ public abstract class DateUtils {
 	 * Date format like Friday November
 	 */
 	public static final String EEEEMMMM_DATE_FORMAT = "EEEE MMMM";
+	
+	public enum DayOfWeek {
+		
+		SUNDAY("Sunday", true),
+		MONDAY("Monday", false),
+		TUESDAY("Tuesday", false),
+		WEDNESDAY("Wednesday", false),
+		THURSDAY("Thursday", false),
+		FRIDAY("Friday", false),
+		SATURDAY("Saturday", true);
+		
+		private String name;
+		private Boolean weekend;
+		
+		private DayOfWeek(String name, Boolean weekend) {
+			this.name = name;
+			this.weekend = weekend;
+		}
+		
+		public Boolean isWeekend() {
+			return weekend;
+		}
+		
+		@Override
+		public String toString() {
+			return name;
+		}
+	}
 	
 	public static final void init() {
 		// nothing...
@@ -203,6 +232,24 @@ public abstract class DateUtils {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
 		return calendar.get(Calendar.DAY_OF_MONTH);
+	}
+	
+	public static int getHour(Date date) {
+		return DateUtils.getHour(date, TimeZone.getDefault());
+	}
+	
+	public static int getHour(Date date, TimeZone timeZone) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.setTimeZone(timeZone);
+		return calendar.get(Calendar.HOUR_OF_DAY);
+	}
+	
+	public static DayOfWeek getWeekDay(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+		return DayOfWeek.values()[dayOfWeek - 1];
 	}
 	
 	public static Date addSeconds(Date date, int seconds) {
