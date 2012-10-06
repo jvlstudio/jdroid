@@ -221,6 +221,10 @@ public abstract class DateUtils {
 		return calendar.getTime();
 	}
 	
+	public static Date getTime(int hour, int minutes) {
+		return getTime(hour, minutes, true);
+	}
+	
 	public static Date getTime(int hour, int minutes, Boolean is24Hour) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(is24Hour ? Calendar.HOUR_OF_DAY : Calendar.HOUR, hour);

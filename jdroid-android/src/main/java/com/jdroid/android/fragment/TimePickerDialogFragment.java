@@ -79,7 +79,7 @@ public class TimePickerDialogFragment extends AbstractDialogFragment {
 		getDialog().setTitle(R.string.selectTime);
 		timePicker = (TimePicker)view.findViewById(R.id.timePicker);
 		timePicker.setIs24HourView(DateFormat.is24HourFormat(getActivity()));
-		timePicker.setCurrentHour(DateUtils.getHour(defaultTime, timePicker.is24HourView()));
+		timePicker.setCurrentHour(DateUtils.getHour(defaultTime, true));
 		timePicker.setCurrentMinute(DateUtils.getMinute(defaultTime));
 		
 		Button ok = (Button)view.findViewById(R.id.ok);
@@ -87,7 +87,7 @@ public class TimePickerDialogFragment extends AbstractDialogFragment {
 			
 			@Override
 			public void onClick(View v) {
-				Date time = DateUtils.getTime(timePicker.getCurrentHour(), timePicker.getCurrentMinute(), true);
+				Date time = DateUtils.getTime(timePicker.getCurrentHour(), timePicker.getCurrentMinute());
 				((OnTimeSetListener)getTargetFragment()).onTimeSet(time);
 				dismiss();
 			}
