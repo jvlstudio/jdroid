@@ -23,9 +23,9 @@
 			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
 		</repository>
 		<repository>
-			<id>github-maven-repository</id>
-			<name>Github Maven Repository</name>
-			<url>https://raw.github.com/maxirosson/maven-repository/master/</url>
+			<id>dropbox-maven-repository</id>
+			<name>Dropbox Maven Repository</name>
+			<url>http://dl.dropbox.com/u/8520947/maven-repository/</url>
 		</repository>
 	</repositories>
 
