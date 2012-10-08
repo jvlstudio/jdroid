@@ -30,6 +30,14 @@ jdroid Java Web
 * Pagination and filtering support
 * Utilities for Collections, CSV, Files, Reflection, Guava, Logging and more.
 
+If you are a Maven user you can add this library as a dependency. Simply add the following to your
+`pom.xml`:
+
+    <dependency>
+        <groupId>com.jdroid</groupId>
+        <artifactId>jdroid-javaweb</artifactId>
+        <version>1.0.0</version>
+    </dependency>
 
 jdroid Android
 --------------
@@ -52,3 +60,11 @@ jdroid Android
 * Voice Recognizer component
 * Utilities for Alarms, Bitmaps, Notifications, Shared Preferences, Toasts, Sounds, GPS, and more.
 
+If you are a Maven user you can add this library as a dependency. Simply add the following to your
+`pom.xml`:
+
+    <dependency>
+        <groupId>com.jdroid</groupId>
+        <artifactId>jdroid-android</artifactId>
+        <version>1.0.0</version>
+    </dependency>
