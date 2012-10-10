@@ -12,8 +12,16 @@ jdroid Java
 * Exception handling
 * Utilities for Collections, Strings, Dates, Files, Encryption, Threads, Logging, Validations, Reflections and more.
 
-If you are a Maven user you can add this library as a dependency. Simply add the following to your
-`pom.xml`:
+If you are a Maven user you can add this library as a dependency. 
+First, add the following repository to your `pom.xml` or `settings.xml`:
+
+    <repository>
+	    <id>dropbox-maven-repository</id>
+		<name>Dropbox Maven Repository</name>
+		<url>http://dl.dropbox.com/u/8520947/maven-repository/</url>
+	</repository>
+
+Then add the following dependency to your`pom.xml`:
 
     <dependency>
         <groupId>com.jdroid</groupId>
@@ -30,8 +38,16 @@ jdroid Java Web
 * Pagination and filtering support
 * Utilities for Collections, CSV, Files, Reflection, Guava, Logging and more.
 
-If you are a Maven user you can add this library as a dependency. Simply add the following to your
-`pom.xml`:
+If you are a Maven user you can add this library as a dependency. 
+First, add the following repository to your `pom.xml` or `settings.xml`:
+
+    <repository>
+        <id>dropbox-maven-repository</id>
+		<name>Dropbox Maven Repository</name>
+		<url>http://dl.dropbox.com/u/8520947/maven-repository/</url>
+	</repository>
+
+Then add the following dependency to your`pom.xml`:
 
     <dependency>
         <groupId>com.jdroid</groupId>
@@ -60,8 +76,16 @@ jdroid Android
 * Voice Recognizer component
 * Utilities for Alarms, Bitmaps, Notifications, Shared Preferences, Toasts, Sounds, GPS, and more.
 
-If you are a Maven user you can add this library as a dependency. Simply add the following to your
-`pom.xml`:
+If you are a Maven user you can add this library as a dependency. 
+First, add the following repository to your `pom.xml` or `settings.xml`:
+
+    <repository>
+        <id>dropbox-maven-repository</id>
+		<name>Dropbox Maven Repository</name>
+		<url>http://dl.dropbox.com/u/8520947/maven-repository/</url>
+	</repository>
+
+Then add the following dependency to your`pom.xml`:
 
     <dependency>
         <groupId>com.jdroid</groupId>
