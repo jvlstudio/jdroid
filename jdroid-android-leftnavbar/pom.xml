@@ -10,7 +10,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<android.sdk.platform>15</android.sdk.platform>
+		<android.sdk.platform>16</android.sdk.platform>
 	</properties>
 
 	<repositories>
@@ -31,7 +31,7 @@
 		<dependency>
 			<groupId>android</groupId>
 			<artifactId>android</artifactId>
-			<version>4.0.3_r3</version>
+			<version>4.1_r3</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -70,7 +70,7 @@
 			<plugin>
 				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
 				<artifactId>android-maven-plugin</artifactId>
-				<version>3.3.0</version>
+				<version>3.3.2</version>
 				<extensions>true</extensions>
 			</plugin>
 		</plugins>
