@@ -39,6 +39,11 @@
 			<version>4.1_r3</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>android.compatibility</groupId>
+			<artifactId>android-support-v4</artifactId>
+			<version>r10</version>
+		</dependency>
 		
 		<!-- ActionBar Sherlock -->
 		<dependency>
