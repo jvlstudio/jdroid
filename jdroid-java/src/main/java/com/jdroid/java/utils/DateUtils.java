@@ -290,6 +290,20 @@ public abstract class DateUtils {
 		return calendar.getTime();
 	}
 	
+	public static Date addDays(Date date, int days) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(Calendar.DAY_OF_MONTH, days);
+		return calendar.getTime();
+	}
+	
+	public static Date addYears(Date date, int years) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(Calendar.YEAR, years);
+		return calendar.getTime();
+	}
+	
 	/**
 	 * Truncate the date removing hours, minutes, seconds and milliseconds
 	 * 

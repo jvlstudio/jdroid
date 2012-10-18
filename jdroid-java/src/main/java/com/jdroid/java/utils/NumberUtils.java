@@ -43,7 +43,7 @@ public class NumberUtils {
 	}
 	
 	public static Double getDouble(String value) {
-		return StringUtils.isNotEmpty(value) ? new Double(value) : null;
+		return StringUtils.isNotEmpty(value) ? Double.valueOf(value) : null;
 	}
 	
 	public static Boolean getBooleanFromNumber(String value) {
