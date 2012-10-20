@@ -6,6 +6,10 @@ jdroid is an application framework for Android and Java apps.
 jdroid Java
 -----------
 * HTTP Service Layer
+ * GET, POST, PUT & DELETE methods
+ * Response Mocks support
+ * GZIP encoding
+ * Cookies
 * JSON & Plain text parsers
 * JSON marshallers
 * Mail Service
@@ -66,7 +70,7 @@ jdroid Android
 * Twitter integration
 * Base Activity & Fragment implementations
 * Exception handling
-* HTTP Service Layer. Cookies.
+* HTTP Cookies storing.
 * Remote image loading component
 * Disk & Memory Images Cache
 * Maps balloon component
@@ -74,6 +78,7 @@ jdroid Android
 * Barcode reading component
 * Coverflow component
 * Voice Recognizer component
+* Date & Time picker components
 * Utilities for Alarms, Bitmaps, Notifications, Shared Preferences, Toasts, Sounds, GPS, and more.
 
 If you are a Maven user you can add this library as a dependency. 
