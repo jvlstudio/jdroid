@@ -49,4 +49,4 @@ jdroid Android
 
 For more information, visit the [GitHub Wiki][1].
 
-[1]: https://github.com/maxirosson/jdroid/wiki/_pages
+[1]: https://github.com/maxirosson/jdroid/wiki
