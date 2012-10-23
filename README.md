@@ -46,3 +46,7 @@ jdroid Android
 * Voice Recognizer component
 * Date & Time picker components
 * Utilities for Alarms, Bitmaps, Notifications, Shared Preferences, Toasts, Sounds, GPS, and more.
+
+For more information, visit the [GitHub Wiki][1].
+
+[1]: https://github.com/maxirosson/jdroid/wiki/_pages
