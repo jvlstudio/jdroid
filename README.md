@@ -47,6 +47,7 @@ jdroid Android
 * Date & Time picker components
 * Utilities for Alarms, Bitmaps, Notifications, Shared Preferences, Toasts, Sounds, GPS, and more.
 
-For more information, visit the [GitHub Wiki][1].
+For more information, visit the [GitHub Wiki][1] or our [Site][2].
 
 [1]: https://github.com/maxirosson/jdroid/wiki
+[2]: http://maxirosson.github.com/jdroid/
