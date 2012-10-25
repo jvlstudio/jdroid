@@ -221,6 +221,12 @@ public abstract class DateUtils {
 		return calendar.getTime();
 	}
 	
+	public static Date getDate(long milliseconds) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(milliseconds);
+		return calendar.getTime();
+	}
+	
 	public static Date getTime(int hour, int minutes) {
 		return getTime(hour, minutes, true);
 	}

@@ -1,9 +1,11 @@
 package com.jdroid.android.fragment;
 
+import java.io.Serializable;
 import java.util.Date;
 import android.annotation.TargetApi;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -27,6 +29,7 @@ public class DatePickerDialogFragment extends AbstractDialogFragment implements 
 	private static final String MIN_DATE_EXTRA = "minDate";
 	private static final String MAX_DATE_EXTRA = "maxDate";
 	private static final String TITLE_EXTRA = "title";
+	private static final String LISTENER_EXTRA = "listener";
 	
 	public static void show(Fragment targetFragment, Date defaultDate) {
 		DatePickerDialogFragment.show(targetFragment, defaultDate, null, null, null);
@@ -36,6 +39,10 @@ public class DatePickerDialogFragment extends AbstractDialogFragment implements 
 		DatePickerDialogFragment.show(targetFragment, defaultDate, titleResId, null, null);
 	}
 	
+	public static void show(Fragment targetFragment, Date defaultDate, Integer titleResId, Date minDate) {
+		DatePickerDialogFragment.show(targetFragment, defaultDate, titleResId, minDate, null);
+	}
+	
 	public static void show(Fragment targetFragment, Date defaultDate, Integer titleResId, Date minDate, Date maxDate) {
 		DatePickerDialogFragment.show(targetFragment, defaultDate, titleResId, minDate, maxDate, 1);
 	}
@@ -43,9 +50,17 @@ public class DatePickerDialogFragment extends AbstractDialogFragment implements 
 	public static void show(Fragment targetFragment, Date defaultDate, Integer titleResId, Date minDate, Date maxDate,
 			int requestCode) {
 		FragmentManager fm = targetFragment.getActivity().getSupportFragmentManager();
-		DatePickerDialogFragment fragment = new DatePickerDialogFragment(defaultDate, titleResId, minDate, maxDate);
+		DatePickerDialogFragment fragment = new DatePickerDialogFragment(defaultDate, titleResId, minDate, maxDate,
+				null);
 		fragment.setTargetFragment(targetFragment, requestCode);
 		fragment.show(fm, DatePickerDialogFragment.class.getSimpleName());
+	}
+	
+	public static void show(FragmentActivity activity, OnDateSetListener onDateSetListener, Date defaultDate,
+			Integer titleResId, Date minDate, Date maxDate) {
+		DatePickerDialogFragment fragment = new DatePickerDialogFragment(defaultDate, titleResId, minDate, maxDate,
+				onDateSetListener);
+		fragment.show(activity.getSupportFragmentManager(), DatePickerDialogFragment.class.getSimpleName());
 	}
 	
 	private DatePicker datePicker;
@@ -53,6 +68,7 @@ public class DatePickerDialogFragment extends AbstractDialogFragment implements 
 	private Date minDate;
 	private Date maxDate;
 	private Integer titleResId;
+	private OnDateSetListener onDateSetListener;
 	
 	/**
 	 * The callback used to indicate the user is done filling in the date.
@@ -65,7 +81,8 @@ public class DatePickerDialogFragment extends AbstractDialogFragment implements 
 	public DatePickerDialogFragment() {
 	}
 	
-	private DatePickerDialogFragment(Date defaultDate, Integer titleResId, Date minDate, Date maxDate) {
+	private DatePickerDialogFragment(Date defaultDate, Integer titleResId, Date minDate, Date maxDate,
+			OnDateSetListener onDateSetListener) {
 		this.defaultDate = defaultDate;
 		this.titleResId = titleResId;
 		this.minDate = minDate;
@@ -78,6 +95,7 @@ public class DatePickerDialogFragment extends AbstractDialogFragment implements 
 		}
 		bundle.putSerializable(MIN_DATE_EXTRA, minDate);
 		bundle.putSerializable(MAX_DATE_EXTRA, maxDate);
+		bundle.putSerializable(LISTENER_EXTRA, (Serializable)onDateSetListener);
 		setArguments(bundle);
 	}
 	
@@ -94,12 +112,18 @@ public class DatePickerDialogFragment extends AbstractDialogFragment implements 
 			titleResId = args.containsKey(TITLE_EXTRA) ? args.getInt(TITLE_EXTRA) : null;
 			minDate = args.containsKey(MIN_DATE_EXTRA) ? (Date)args.getSerializable(MIN_DATE_EXTRA) : null;
 			maxDate = args.containsKey(MAX_DATE_EXTRA) ? (Date)args.getSerializable(MAX_DATE_EXTRA) : null;
+			onDateSetListener = args.containsKey(LISTENER_EXTRA) ? (OnDateSetListener)args.getSerializable(LISTENER_EXTRA)
+					: null;
 		}
 		
 		// Google TV is not displaying the title of the dialog.
 		if (AndroidUtils.isGoogleTV()) {
 			setStyle(STYLE_NO_TITLE, 0);
 		}
+	}
+	
+	private OnDateSetListener getOnDateSetListener() {
+		return onDateSetListener != null ? onDateSetListener : ((OnDateSetListener)getTargetFragment());
 	}
 	
 	/**
@@ -142,7 +166,7 @@ public class DatePickerDialogFragment extends AbstractDialogFragment implements 
 				int requestCode = getTargetRequestCode();
 				Date date = com.jdroid.java.utils.DateUtils.getDate(datePicker.getYear(), datePicker.getMonth(),
 					datePicker.getDayOfMonth());
-				((OnDateSetListener)getTargetFragment()).onDateSet(date, requestCode);
+				getOnDateSetListener().onDateSet(date, requestCode);
 				dismiss();
 			}
 		});
