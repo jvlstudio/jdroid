@@ -24,24 +24,36 @@ public class CustomImageView extends ImageView implements ImageHolder {
 		super(context, attrs, defStyle);
 	}
 	
+	/**
+	 * @see com.jdroid.android.images.ImageHolder#setImageContent(com.jdroid.android.domain.FileContent, int)
+	 */
+	@Override
 	public void setImageContent(FileContent fileContent, int stubId) {
 		setImageContent(fileContent, stubId, null, null);
 	}
 	
+	/**
+	 * @see com.jdroid.android.images.ImageHolder#setImageContent(com.jdroid.android.domain.FileContent, int,
+	 *      java.lang.Integer, java.lang.Integer)
+	 */
+	@Override
 	public void setImageContent(FileContent fileContent, int stubId, Integer maxWidth, Integer maxHeight) {
 		setImageContent(fileContent != null ? fileContent.getUri() : null, stubId, maxWidth, maxHeight);
 	}
 	
+	/**
+	 * @see com.jdroid.android.images.ImageHolder#setImageContent(android.net.Uri, int)
+	 */
+	@Override
 	public void setImageContent(Uri imageUri, int stubId) {
 		setImageContent(imageUri, stubId, null, null);
 	}
 	
 	/**
-	 * @param imageUri The image Uri
-	 * @param stubId The id of the resource stub to display while the image is been downloaded
-	 * @param maxWidth The maximum width of the image used to scale it. If null, the image won't be scaled
-	 * @param maxHeight The maximum height of the image used to scale it. If null, the image won't be scaled
+	 * @see com.jdroid.android.images.ImageHolder#setImageContent(android.net.Uri, int, java.lang.Integer,
+	 *      java.lang.Integer)
 	 */
+	@Override
 	public void setImageContent(Uri imageUri, int stubId, Integer maxWidth, Integer maxHeight) {
 		this.stubId = stubId;
 		this.maxWidth = maxWidth;
