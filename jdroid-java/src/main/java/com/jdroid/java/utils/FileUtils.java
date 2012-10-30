@@ -197,7 +197,7 @@ public abstract class FileUtils {
 	
 	public static String toString(InputStream in, Boolean closeStream) {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-		StringBuffer contents = new StringBuffer();
+		StringBuilder contentBuilder = new StringBuilder();
 		String text = null;
 		
 		// repeat until all lines are read
@@ -205,10 +205,10 @@ public abstract class FileUtils {
 			Boolean firstLine = true;
 			while ((text = reader.readLine()) != null) {
 				if (!firstLine) {
-					contents.append(System.getProperty("line.separator"));
+					contentBuilder.append(System.getProperty("line.separator"));
 				}
 				firstLine = false;
-				contents.append(text);
+				contentBuilder.append(text);
 			}
 		} catch (IOException e) {
 			throw new UnexpectedException("Error reading the stream", e);
@@ -217,7 +217,7 @@ public abstract class FileUtils {
 				safeClose(in);
 			}
 		}
-		return contents.toString();
+		return contentBuilder.toString();
 	}
 	
 	/**
