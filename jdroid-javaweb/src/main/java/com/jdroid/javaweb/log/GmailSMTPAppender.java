@@ -91,14 +91,14 @@ public class GmailSMTPAppender extends SMTPAppender {
 					headers.setHeader("Content-Transfer-Encoding", "quoted-printable");
 					part = new MimeBodyPart(headers, os.toByteArray());
 				} catch (Exception ex) {
-					StringBuffer sbuf = new StringBuffer(s);
-					for (int i = 0; i < sbuf.length(); i++) {
-						if (sbuf.charAt(i) >= 0x80) {
-							sbuf.setCharAt(i, '?');
+					StringBuilder contentBuilder = new StringBuilder(s);
+					for (int i = 0; i < contentBuilder.length(); i++) {
+						if (contentBuilder.charAt(i) >= 0x80) {
+							contentBuilder.setCharAt(i, '?');
 						}
 					}
 					part = new MimeBodyPart();
-					part.setContent(sbuf.toString(), layout.getContentType());
+					part.setContent(contentBuilder.toString(), layout.getContentType());
 				}
 			}
 			

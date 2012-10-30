@@ -78,11 +78,11 @@ public class EncryptionUtils {
 	}
 	
 	public static String toHex(byte[] bytes) {
-		StringBuffer hexString = new StringBuffer();
+		StringBuilder hexBuilder = new StringBuilder();
 		for (int i = 0; i < bytes.length; i++) {
-			hexString.append(Character.forDigit((bytes[i] >>> 4) & 0xf, 16));
-			hexString.append(Character.forDigit(bytes[i] & 0xf, 16));
+			hexBuilder.append(Character.forDigit((bytes[i] >>> 4) & 0xf, 16));
+			hexBuilder.append(Character.forDigit(bytes[i] & 0xf, 16));
 		}
-		return hexString.toString();
+		return hexBuilder.toString();
 	}
 }
