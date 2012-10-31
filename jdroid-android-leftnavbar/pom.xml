@@ -7,29 +7,11 @@
 	<packaging>apklib</packaging>
 	<version>1.0.0</version>
 	<name>jdroid Android Left Nav Bar</name>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<android.sdk.platform>16</android.sdk.platform>
-	</properties>
-
-	<repositories>
-		<repository>
-			<id>maven</id>
-			<name>Maven Repository</name>
-			<url>http://repo1.maven.org/maven2/</url>
-		</repository>
-		<repository>
-			<id>dropbox-maven-repository</id>
-			<name>Dropbox Maven Repository</name>
-			<url>http://dl.dropbox.com/u/8520947/maven-repository/</url>
-		</repository>
-		<repository>
-			<id>actionbarsherlock-repo</id>
-			<name>Actionbarsherlock Maven Repository</name>
-			<url>http://r.jakewharton.com/maven/release/</url>
-		</repository>
-	</repositories>
+	<parent>
+		<groupId>com.jdroid</groupId>
+		<artifactId>jdroid-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
 
 	<dependencies>
 

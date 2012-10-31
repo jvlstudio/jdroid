@@ -6,29 +6,12 @@
 	<packaging>jar</packaging>
 	<version>1.0.0</version>
 	<name>jdroid Java</name>
+	<parent>
+		<groupId>com.jdroid</groupId>
+		<artifactId>jdroid-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
 	
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-	
-	<repositories>
-		<repository>
-			<id>maven</id>
-			<name>Maven Repository</name>
-			<url>http://repo1.maven.org/maven2/</url>
-		</repository>
-		<repository>
-			<id>jboss-artifactory-all</id>
-			<name>JBoss Maven Repository</name>
-			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
-		</repository>
-		<repository>
-			<id>dropbox-maven-repository</id>
-			<name>Dropbox Maven Repository</name>
-			<url>http://dl.dropbox.com/u/8520947/maven-repository/</url>
-		</repository>
-	</repositories>
-
 	<build>
 		<finalName>${project.artifactId}-v${project.version}</finalName>
 		<resources>

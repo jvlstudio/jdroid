@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.jdroid</groupId>
+    <artifactId>jdroid-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+    <name>jdroid</name>
+	
+	<modules>
+		<module>jdroid-android</module>
+		<module>jdroid-android-leftnavbar</module>
+		<module>jdroid-java</module>
+		<module>jdroid-javaweb</module>
+    </modules>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<android.sdk.platform>16</android.sdk.platform>
+	</properties>
+	
+	<repositories>
+		<repository>
+			<id>maven</id>
+			<name>Maven Repository</name>
+			<url>http://repo1.maven.org/maven2/</url>
+		</repository>
+		<repository>
+			<id>jboss-artifactory-all</id>
+			<name>JBoss Maven Repository</name>
+			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>actionbarsherlock-repo</id>
+			<name>Actionbarsherlock Maven Repository</name>
+			<url>http://r.jakewharton.com/maven/release/</url>
+		</repository>
+		<repository>
+			<id>dropbox-maven-repository</id>
+			<name>Dropbox Maven Repository</name>
+			<url>http://dl.dropbox.com/u/8520947/maven-repository/</url>
+		</repository>
+	</repositories>
+    
+	<distributionManagement>        
+		<repository>            
+			<id>dropbox</id>                        
+			<url>file:///C:/Users/maxi/Documents/My Dropbox/Public/maven-repository</url>                      
+		</repository>           
+	</distributionManagement>
+	
+</project>
