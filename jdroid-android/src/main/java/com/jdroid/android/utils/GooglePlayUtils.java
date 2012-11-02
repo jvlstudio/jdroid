@@ -6,8 +6,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import com.jdroid.android.R;
 import com.jdroid.android.AbstractApplication;
+import com.jdroid.android.R;
 
 /**
  * 
@@ -26,9 +26,7 @@ public class GooglePlayUtils {
 			
 			@Override
 			public void onClick(DialogInterface dialogInterface, int i) {
-				Uri uri = Uri.parse("market://details?id=" + AndroidUtils.getPackageName());
-				Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-				context.startActivity(intent);
+				launchAppDetails(context, AndroidUtils.getPackageName());
 			}
 		});
 		AlertDialogUtils.show(downloadDialog);
@@ -56,9 +54,9 @@ public class GooglePlayUtils {
 		return downloadDialog.show();
 	}
 	
-	public static void launchAppDetails(Activity activity, String packageName) {
+	public static void launchAppDetails(Context context, String packageName) {
 		Uri uri = Uri.parse("market://details?id=" + packageName);
 		Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-		activity.startActivity(intent);
+		context.startActivity(intent);
 	}
 }

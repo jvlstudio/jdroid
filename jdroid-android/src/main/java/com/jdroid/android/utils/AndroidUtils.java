@@ -7,6 +7,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 import android.provider.MediaStore;
@@ -15,13 +16,16 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import com.jdroid.android.AbstractApplication;
-import com.jdroid.java.utils.FileUtils;
 
 /**
  * 
  * @author Maxi Rosson
  */
 public class AndroidUtils {
+	
+	public static Boolean isEmulator() {
+		return "google_sdk".equals(Build.PRODUCT);
+	}
 	
 	// TODO See if this is working
 	public static String getInstallationId() {
