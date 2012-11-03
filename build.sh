@@ -88,12 +88,9 @@ fi
 # ************************
 cd $SOURCE_DIRECTORY/$PROJECT_NAME
 
-if [ "$DEPLOY" = "false" ]
-then
-	mvn dependency:resolve clean install -Dmaven.test.skip=true
-fi
+mvn dependency:resolve clean install -Dmaven.test.skip=true
 
 if [ "$DEPLOY" = "true" ]
 then
-	mvn dependency:resolve clean deploy assembly:single -Dmaven.test.skip=true
+	mvn deploy assembly:single -Dmaven.test.skip=true
 fi
