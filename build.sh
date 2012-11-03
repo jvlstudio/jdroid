@@ -94,3 +94,5 @@ if [ "$DEPLOY" = "true" ]
 then
 	mvn deploy assembly:single -Dmaven.test.skip=true
 fi
+
+cp ./target/*.zip $ASSEMBLIES_DIRECTORY/
