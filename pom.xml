@@ -9,10 +9,10 @@
     <name>jdroid</name>
 	
 	<modules>
-		<module>jdroid-android</module>
-		<module>jdroid-android-leftnavbar</module>
 		<module>jdroid-java</module>
 		<module>jdroid-javaweb</module>
+		<module>jdroid-android</module>
+		<module>jdroid-android-leftnavbar</module>
     </modules>
 	
 	<properties>
@@ -78,6 +78,18 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			
+			<!-- Assembly Plugin -->
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<finalName>jdroid-v${project.version}</finalName>
+					<descriptors>
+						<descriptor>assembly.xml</descriptor>
+					</descriptors>
+				</configuration>
 			</plugin>
 			
 			<plugin>

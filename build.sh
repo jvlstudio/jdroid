@@ -2,7 +2,7 @@
 
 BUILD_DIRECTORY=$1
 USER_NAME=$2
-CLEAN=$3
+DEPLOY=$3
 BRANCH=$4
 PROJECT_NAME=jdroid
 
@@ -20,7 +20,7 @@ then
         echo ""
         echo " 2) The Git user name used to checkout the code. Required."
         echo ""
-        echo " 3) Whether the source code and assemblies on the build directory should be cleaned or not. Required. Default value: true"
+        echo " 3) Whether the assemblies should be deployed or not. Optional. Default value: false"
         echo ""
         echo " 4) The branch from where check out the code. Optional. Default value: master"
         echo ""
@@ -50,9 +50,9 @@ then
         exit 1
 fi
 
-if [ -z "$CLEAN" ]
+if [ -z "$DEPLOY" ]
 then
-	CLEAN="true"
+	DEPLOY="false"
 fi
 
 if [ -z "$BRANCH" ]
@@ -63,45 +63,37 @@ fi
 SOURCE_DIRECTORY=$BUILD_DIRECTORY/$PROJECT_NAME/source
 ASSEMBLIES_DIRECTORY=$BUILD_DIRECTORY/$PROJECT_NAME/assemblies
 
-# Cleaning
+# Checking out
 # ************************
-if [ "$CLEAN" = "true" ]
+
+# Clean the directories
+rm -r -f $SOURCE_DIRECTORY
+mkdir -p $SOURCE_DIRECTORY
+
+rm -r -f $ASSEMBLIES_DIRECTORY
+mkdir -p $ASSEMBLIES_DIRECTORY
+
+# Checkout the project
+cd $SOURCE_DIRECTORY
+echo Cloning git@github.com:maxirosson/jdroid.git
+git clone git@github.com:maxirosson/jdroid.git $PROJECT_NAME
+
+cd $SOURCE_DIRECTORY/$PROJECT_NAME
+if [ "$BRANCH" != 'master' ] 
 then
-	# Clean the directories
-	rm -r -f $SOURCE_DIRECTORY
-	mkdir -p $SOURCE_DIRECTORY
-
-	rm -r -f $ASSEMBLIES_DIRECTORY
-	mkdir -p $ASSEMBLIES_DIRECTORY
-
-	# Checkout the project
-	cd $SOURCE_DIRECTORY
-	echo Cloning git@github.com:maxirosson/jdroid.git
-	git clone git@github.com:maxirosson/jdroid.git $PROJECT_NAME
-
-	cd $SOURCE_DIRECTORY/$PROJECT_NAME
-	if [ "$BRANCH" != 'master' ] 
-	then
-		git checkout -b $BRANCH origin/$BRANCH --track
-	fi
+	git checkout -b $BRANCH origin/$BRANCH --track
 fi
 
 # Assemblies Generation
 # ************************
+cd $SOURCE_DIRECTORY/$PROJECT_NAME
 
-# Install the jdroid java jar
-cd $SOURCE_DIRECTORY/$PROJECT_NAME/jdroid-java
-mvn dependency:resolve clean install -Dmaven.test.skip=true
+if [ "$DEPLOY" = "false" ]
+then
+	mvn dependency:resolve clean install -Dmaven.test.skip=true
+fi
 
-# Install the jdroid javaweb jar
-cd $SOURCE_DIRECTORY/$PROJECT_NAME/jdroid-javaweb
-mvn dependency:resolve clean install -Dmaven.test.skip=true
-
-# Install the jdroid android apk lib
-cd $SOURCE_DIRECTORY/$PROJECT_NAME/jdroid-android
-mvn dependency:resolve clean install
-
-# Install the jdroid android leftnavbar apk lib
-cd $SOURCE_DIRECTORY/$PROJECT_NAME/jdroid-android-leftnavbar
-mvn dependency:resolve clean install
-
+if [ "$DEPLOY" = "true" ]
+then
+	mvn dependency:resolve clean deploy assembly:single -Dmaven.test.skip=true
+fi
