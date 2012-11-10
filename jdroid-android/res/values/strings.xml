@@ -15,6 +15,7 @@
 	<string name="zeroPercent">0%</string>
 	<string name="next">Next</string>
 	<string name="previous">Previous</string>
+	<string name="finish">Finish</string>
 
 	<!-- GCM -->
 	<string name="onMissingGoogleAccountError">You need to set up a Google account on your device to use push notifications</string>

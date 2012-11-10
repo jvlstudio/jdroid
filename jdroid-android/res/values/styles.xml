@@ -130,4 +130,9 @@
 		<item name="android:ellipsize">end</item>
 	</style>
 
+	<!-- Wizard -->
+	<style name="finishWizardText" parent="android:TextAppearance.Holo.Medium">
+		<item name="android:textColor">#fff</item>
+	</style>
+
 </resources>

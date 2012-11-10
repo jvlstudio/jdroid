@@ -9,4 +9,6 @@
 
 	<color name="listSeparatorCenter">#99000000</color>
 	<color name="listSeparatorBorder">#99CCCCCC</color>
+	
+	<color name="finishWizard">#ff669900</color>
 </resources>
