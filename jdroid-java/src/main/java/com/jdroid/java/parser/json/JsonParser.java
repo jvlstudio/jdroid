@@ -9,6 +9,7 @@ import com.jdroid.java.exception.UnexpectedException;
 import com.jdroid.java.parser.Parser;
 import com.jdroid.java.utils.FileUtils;
 import com.jdroid.java.utils.LoggerUtils;
+import com.jdroid.java.utils.StringUtils;
 
 /**
  * JSON input streams parser
@@ -53,7 +54,8 @@ public abstract class JsonParser<T> implements Parser {
 	 */
 	@Override
 	public Object parse(InputStream inputStream) {
-		return parse(FileUtils.toString(inputStream));
+		String content = FileUtils.toString(inputStream);
+		return StringUtils.isNotBlank(content) ? parse(content) : null;
 	}
 	
 	/**

@@ -74,6 +74,10 @@ public abstract class WizardActivity extends AbstractFragmentActivity {
 	
 	public abstract List<? extends WizardStep> getWizardSteps();
 	
+	public WizardStep getCurrentWizardStep() {
+		return getWizardSteps().get(pager.getCurrentItem());
+	}
+	
 	private void updateBottomBar() {
 		int position = pager.getCurrentItem();
 		if (isOnFinishStep()) {
