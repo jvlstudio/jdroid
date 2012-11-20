@@ -28,6 +28,7 @@ public class DefaultApplicationContext {
 		PropertiesUtils.loadProperties(LOCAL_PROPERTIES_RESOURCE_NAME);
 		PropertiesUtils.loadProperties(PROPERTIES_RESOURCE_NAME);
 		
+		environmentName = PropertiesUtils.getStringProperty("environment.name");
 		googleProjectId = PropertiesUtils.getStringProperty("google.projectId");
 		facebookAppId = PropertiesUtils.getStringProperty("facebook.app.id");
 		devSettings = PropertiesUtils.getBooleanProperty("dev.settings");
