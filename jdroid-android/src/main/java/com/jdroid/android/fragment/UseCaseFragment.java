@@ -53,7 +53,7 @@ public abstract class UseCaseFragment<T extends DefaultAbstractUseCase> extends 
 	@Override
 	public void onResume() {
 		super.onResume();
-		onResumeUseCase(useCase, this, true);
+		onResumeUseCase(useCase, this, executeOnInit());
 	}
 	
 	/**
@@ -63,5 +63,13 @@ public abstract class UseCaseFragment<T extends DefaultAbstractUseCase> extends 
 	public void onPause() {
 		super.onPause();
 		onPauseUseCase(useCase, this);
+	}
+	
+	protected Boolean executeOnInit() {
+		return true;
+	}
+	
+	public void executeUseCase() {
+		executeUseCase(useCase);
 	}
 }
