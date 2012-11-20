@@ -1,6 +1,7 @@
 package com.jdroid.java.http.delete;
 
 import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 import com.jdroid.java.http.HttpClientFactory;
 import com.jdroid.java.http.HttpWebService;
@@ -25,7 +26,7 @@ public class HttpDeleteWebService extends HttpWebService {
 	 * @see com.jdroid.java.http.HttpWebService#createHttpUriRequest()
 	 */
 	@Override
-	protected HttpUriRequest createHttpUriRequest() {
-		return new HttpDelete(getBaseURL() + getUrlSegments() + makeStringParameters());
+	protected HttpUriRequest createHttpUriRequest(String protocol) {
+		return new HttpGet(protocol + "://" + getBaseURL() + getUrlSegments() + makeStringParameters());
 	}
 }

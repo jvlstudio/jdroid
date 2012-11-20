@@ -25,7 +25,7 @@ public class HttpGetWebService extends HttpWebService {
 	 * @see com.jdroid.java.http.HttpWebService#createHttpUriRequest()
 	 */
 	@Override
-	protected HttpUriRequest createHttpUriRequest() {
-		return new HttpGet(getBaseURL() + getUrlSegments() + makeStringParameters());
+	protected HttpUriRequest createHttpUriRequest(String protocol) {
+		return new HttpGet(protocol + "://" + getBaseURL() + getUrlSegments() + makeStringParameters());
 	}
 }

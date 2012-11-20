@@ -30,14 +30,15 @@ public class DefaultHttpClientFactory implements HttpClientFactory {
 	 */
 	@Override
 	public DefaultHttpClient createDefaultHttpClient() {
-		return createDefaultHttpClient(null, null);
+		return createDefaultHttpClient(false, null, null);
 	}
 	
 	/**
-	 * @see com.jdroid.java.http.HttpClientFactory#createDefaultHttpClient(java.lang.Integer, java.lang.String)
+	 * @see com.jdroid.java.http.HttpClientFactory#createDefaultHttpClient(java.lang.Boolean, java.lang.Integer,
+	 *      java.lang.String)
 	 */
 	@Override
-	public DefaultHttpClient createDefaultHttpClient(Integer timeout, String userAgent) {
+	public DefaultHttpClient createDefaultHttpClient(Boolean ssl, Integer timeout, String userAgent) {
 		DefaultHttpClient client = new DefaultHttpClient();
 		client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,
 			timeout != null ? timeout : DEFAULT_TIMEOUT);

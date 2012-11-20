@@ -57,4 +57,9 @@ public interface WebService {
 	 */
 	public void addCookie(Cookie cookie);
 	
+	/**
+	 * @param ssl
+	 */
+	public void setSsl(Boolean ssl);
+	
 }

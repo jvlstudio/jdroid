@@ -28,6 +28,9 @@ public abstract class HttpWebService implements WebService {
 	
 	protected static final Logger LOGGER = LoggerUtils.getLogger(HttpWebService.class);
 	
+	private static final String HTTPS_PROTOCOL = "https";
+	private static final String HTTP_PROTOCOL = "http";
+	
 	public static final String ACCEPT_ENCODING_HEADER = "Accept-Encoding";
 	public static final String CONTENT_ENCODING_HEADER = "Content-Encoding";
 	public static final String GZIP_ENCODING = "gzip";
@@ -41,6 +44,8 @@ public abstract class HttpWebService implements WebService {
 	private static final String QUESTION_MARK = "?";
 	private static final String EQUALS = "=";
 	private static final String AMPERSAND = "&";
+	
+	private Boolean ssl = false;
 	
 	/** Connection timeout in milliseconds */
 	private Integer connectionTimeout;
@@ -104,13 +109,13 @@ public abstract class HttpWebService implements WebService {
 			}
 			
 			// make client for http.
-			client = httpClientFactory.createDefaultHttpClient(connectionTimeout, userAgent);
+			client = httpClientFactory.createDefaultHttpClient(ssl, connectionTimeout, userAgent);
 			
 			// Add Cookies
 			addCookies(client);
 			
 			// make request.
-			HttpUriRequest request = createHttpUriRequest();
+			HttpUriRequest request = createHttpUriRequest(ssl ? HTTPS_PROTOCOL : HTTP_PROTOCOL);
 			
 			// Log request
 			LOGGER.debug(getMethodName() + ": " + request.getRequestLine().getUri());
@@ -270,8 +275,10 @@ public abstract class HttpWebService implements WebService {
 	
 	/**
 	 * Create the {@link HttpUriRequest} to send.
+	 * 
+	 * @param protocol
 	 */
-	protected abstract HttpUriRequest createHttpUriRequest();
+	protected abstract HttpUriRequest createHttpUriRequest(String protocol);
 	
 	/**
 	 * @see com.jdroid.java.http.WebService#setUserAgent(java.lang.String)
@@ -279,6 +286,14 @@ public abstract class HttpWebService implements WebService {
 	@Override
 	public void setUserAgent(String userAgent) {
 		this.userAgent = userAgent;
+	}
+	
+	/**
+	 * @see com.jdroid.java.http.WebService#setSsl(java.lang.Boolean)
+	 */
+	@Override
+	public void setSsl(Boolean ssl) {
+		this.ssl = ssl;
 	}
 	
 }

@@ -12,10 +12,10 @@ public class DefaultApplicationContext {
 	private static final String PROPERTIES_RESOURCE_NAME = "settings.properties";
 	private static final String LOCAL_PROPERTIES_RESOURCE_NAME = "settings.local.properties";
 	
+	private String environmentName;
 	private String googleProjectId;
 	private String facebookAppId;
 	private Boolean devSettings;
-	private Boolean productionEnvironment;
 	private Boolean isFreeApp;
 	private Boolean adsEnabled;
 	private String adUnitId;
@@ -31,7 +31,6 @@ public class DefaultApplicationContext {
 		googleProjectId = PropertiesUtils.getStringProperty("google.projectId");
 		facebookAppId = PropertiesUtils.getStringProperty("facebook.app.id");
 		devSettings = PropertiesUtils.getBooleanProperty("dev.settings");
-		productionEnvironment = PropertiesUtils.getBooleanProperty("production.environment");
 		isFreeApp = PropertiesUtils.getBooleanProperty("free.app");
 		adsEnabled = PropertiesUtils.getBooleanProperty("ads.enabled", false);
 		adUnitId = PropertiesUtils.getStringProperty("ads.adUnitId");
@@ -61,11 +60,15 @@ public class DefaultApplicationContext {
 		return devSettings;
 	}
 	
+	public String getEnvironmentName() {
+		return environmentName;
+	}
+	
 	/**
 	 * @return Whether the application is running on a production environment
 	 */
 	public Boolean isProductionEnvironment() {
-		return productionEnvironment;
+		return environmentName.equals("PROD");
 	}
 	
 	/**

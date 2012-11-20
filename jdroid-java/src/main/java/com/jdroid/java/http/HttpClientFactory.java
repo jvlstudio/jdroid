@@ -19,10 +19,11 @@ public interface HttpClientFactory {
 	/**
 	 * Creates a {@link HttpClient} and sets a timeout for it.
 	 * 
+	 * @param ssl Whether the connection needs ssl or not
 	 * @param timeout The connection timeout in milliseconds. If null a default timeout of 10 seconds will be used.
 	 * @param userAgent The user agent
 	 * 
 	 * @return {@link HttpClient} The created client.
 	 */
-	public HttpClient createDefaultHttpClient(Integer timeout, String userAgent);
+	public HttpClient createDefaultHttpClient(Boolean ssl, Integer timeout, String userAgent);
 }

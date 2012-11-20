@@ -26,10 +26,10 @@ public abstract class HttpEntityEnclosingWebService extends HttpWebService imple
 	 * @see com.jdroid.java.http.HttpWebService#createHttpUriRequest()
 	 */
 	@Override
-	protected HttpUriRequest createHttpUriRequest() {
+	protected HttpUriRequest createHttpUriRequest(String protocol) {
 		// New HttpEntityEnclosingRequestBase for send request.
-		HttpEntityEnclosingRequestBase httpEntityEnclosingRequestBase = createHttpEntityEnclosingRequestBase(getBaseURL()
-				+ getUrlSegments() + makeStringParameters());
+		HttpEntityEnclosingRequestBase httpEntityEnclosingRequestBase = createHttpEntityEnclosingRequestBase(protocol
+				+ "://" + getBaseURL() + getUrlSegments() + makeStringParameters());
 		
 		// set body for request.
 		addEntity(httpEntityEnclosingRequestBase);

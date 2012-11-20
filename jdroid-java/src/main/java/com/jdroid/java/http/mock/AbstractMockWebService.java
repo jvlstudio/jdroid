@@ -27,6 +27,7 @@ public abstract class AbstractMockWebService implements MultipartWebService {
 	private static final Logger LOGGER = LoggerUtils.getLogger(AbstractMockWebService.class);
 	
 	private static final String MOCK_SEPARATOR = "_";
+	private static final String SUFFIX_SEPARATOR = "-";
 	private static final String URL_SEPARATOR = "/";
 	
 	private Object[] urlSegments;
@@ -53,6 +54,13 @@ public abstract class AbstractMockWebService implements MultipartWebService {
 			}
 		}
 		sb.deleteCharAt(sb.length() - 1);
+		
+		String suffix = getSuffix();
+		if (StringUtils.isNotBlank(suffix)) {
+			sb.append(SUFFIX_SEPARATOR);
+			sb.append(suffix);
+		}
+		
 		sb.append(getMocksExtension());
 		String filePath = sb.toString();
 		
@@ -192,6 +200,14 @@ public abstract class AbstractMockWebService implements MultipartWebService {
 	}
 	
 	/**
+	 * @see com.jdroid.java.http.WebService#setSsl(java.lang.Boolean)
+	 */
+	@Override
+	public void setSsl(Boolean ssl) {
+		// Do Nothing
+	}
+	
+	/**
 	 * @return The time to sleep (in seconds) to simulate the execution of the request
 	 */
 	protected abstract Integer getHttpMockSleepDuration(Object... urlSegments);
@@ -205,5 +221,12 @@ public abstract class AbstractMockWebService implements MultipartWebService {
 	 * @return The mocks extension
 	 */
 	protected abstract String getMocksExtension();
+	
+	/**
+	 * @return The suffix to add to the mock file
+	 */
+	protected String getSuffix() {
+		return null;
+	}
 	
 }

@@ -21,10 +21,11 @@ public class AndroidHttpClientFactory implements HttpClientFactory {
 	}
 	
 	/**
-	 * @see com.jdroid.java.http.HttpClientFactory#createDefaultHttpClient(java.lang.Integer, java.lang.String)
+	 * @see com.jdroid.java.http.HttpClientFactory#createDefaultHttpClient(java.lang.Boolean, java.lang.Integer,
+	 *      java.lang.String)
 	 */
 	@Override
-	public HttpClient createDefaultHttpClient(Integer timeout, String userAgent) {
+	public HttpClient createDefaultHttpClient(Boolean ssl, Integer timeout, String userAgent) {
 		return AndroidHttpClient.newInstance(userAgent);
 	}
 	
