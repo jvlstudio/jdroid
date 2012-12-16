@@ -1,6 +1,7 @@
 package com.jdroid.android.wizard;
 
 import java.util.List;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
@@ -83,13 +84,13 @@ public abstract class WizardActivity extends AbstractFragmentActivity {
 		int position = pager.getCurrentItem();
 		if (isOnFinishStep()) {
 			next.setText(R.string.finish);
-			if (AndroidUtils.getApiLevel() > 10) {
+			if (AndroidUtils.getApiLevel() >= Build.VERSION_CODES.JELLY_BEAN) {
 				next.setBackgroundResource(R.drawable.finish_background);
 				next.setTextAppearance(this, R.style.finishWizardText);
 			}
 		} else {
 			next.setText(R.string.next);
-			if (AndroidUtils.getApiLevel() > 10) {
+			if (AndroidUtils.getApiLevel() >= Build.VERSION_CODES.JELLY_BEAN) {
 				next.setBackgroundResource(R.drawable.selectable_item_background);
 				TypedValue v = new TypedValue();
 				getTheme().resolveAttribute(android.R.attr.textAppearanceMedium, v, true);
