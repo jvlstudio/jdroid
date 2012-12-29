@@ -2,7 +2,6 @@ package com.jdroid.android.wizard;
 
 import java.util.List;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
 import android.view.View;
@@ -29,13 +28,7 @@ public abstract class WizardActivity extends AbstractFragmentActivity {
 		return R.layout.wizard_activity;
 	}
 	
-	/**
-	 * @see com.jdroid.android.activity.AbstractFragmentActivity#onCreate(android.os.Bundle)
-	 */
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
+	protected void loadWizard() {
 		WizardStepFragmentAdapter pagerAdapter = new WizardStepFragmentAdapter(getSupportFragmentManager(),
 				getWizardSteps());
 		
