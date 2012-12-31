@@ -3,6 +3,7 @@ package com.jdroid.android.fragment;
 import java.io.Serializable;
 import java.util.Date;
 import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -195,9 +196,12 @@ public class DatePickerDialogFragment extends AbstractDialogFragment implements 
 	}
 	
 	private void updateTitle(Date date) {
-		String title = DateUtils.formatDateTime(getDialog().getContext(), date.getTime(), DateUtils.FORMAT_SHOW_DATE
-				| DateUtils.FORMAT_SHOW_WEEKDAY | DateUtils.FORMAT_SHOW_YEAR | DateUtils.FORMAT_ABBREV_MONTH
-				| DateUtils.FORMAT_ABBREV_WEEKDAY);
-		getDialog().setTitle(title);
+		Dialog dialog = getDialog();
+		if (dialog != null) {
+			String title = DateUtils.formatDateTime(getDialog().getContext(), date.getTime(),
+				DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_WEEKDAY | DateUtils.FORMAT_SHOW_YEAR
+						| DateUtils.FORMAT_ABBREV_MONTH | DateUtils.FORMAT_ABBREV_WEEKDAY);
+			dialog.setTitle(title);
+		}
 	}
 }

@@ -20,6 +20,8 @@ public abstract class StringUtils {
 	public final static String ELLIPSIS = "...";
 	public final static String COMMA = ",";
 	public final static String SPACE = " ";
+	public final static String DASH = "-";
+	public final static String SLASH = "/";
 	
 	private final static String PLACEHOLDER_PATTERN = "\\$\\{(.*?)\\}";
 	private final static String ALPHANUMERIC_PATTERN = "([^\\w\\s])*";
@@ -240,5 +242,31 @@ public abstract class StringUtils {
 			values = Lists.newArrayList(org.apache.commons.lang.StringUtils.split(text, separator));
 		}
 		return values;
+	}
+	
+	/**
+	 * Returns the first token of the string if that string can be split by the token, else return the unmodified input
+	 * string
+	 * 
+	 * @param string The string to split
+	 * @param token The token to use as splitter
+	 * @return The resultant string
+	 */
+	public static String getFirstToken(String string, String token) {
+		if (string.contains(token)) {
+			return string.split(token)[0];
+		}
+		return string;
+	}
+	
+	/**
+	 * Returns the first token of the string if that string can be split by a ",", else return the unmodified input
+	 * string
+	 * 
+	 * @param string The string to split
+	 * @return The resultant string
+	 */
+	public static String getFirstToken(String string) {
+		return getFirstToken(string, COMMA);
 	}
 }

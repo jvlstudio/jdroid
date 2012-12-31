@@ -1,5 +1,6 @@
 package com.jdroid.android.gps;
 
+import java.util.List;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -25,6 +26,9 @@ public class LocalizationManager implements LocationListener {
 	private static final String GPS_TIMEOUT_ACTION = "ACTION_GPS_TIMEOUT";
 	private static final long GPS_TIMEOUT = 30000;
 	
+	// 2 minutes
+	private static final int MAXIMUM_TIME_DELTA = 120000;
+	
 	private static final LocalizationManager INSTANCE = new LocalizationManager();
 	private static final int LOCATION_MIN_TIME = 10000;
 	private Location location;
@@ -39,36 +43,57 @@ public class LocalizationManager implements LocationListener {
 		
 		// Acquire a reference to the system Location Manager
 		locationManager = (LocationManager)AbstractApplication.get().getSystemService(Context.LOCATION_SERVICE);
+		
+		BroadcastReceiver stopLocalizationBroadcastReceiver = (new BroadcastReceiver() {
+			
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				stopLocalization();
+			}
+		});
+		AbstractApplication.get().registerReceiver(stopLocalizationBroadcastReceiver,
+			new IntentFilter(GPS_TIMEOUT_ACTION));
+	}
+	
+	public Boolean isLocalizationEnabled() {
+		return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+				|| locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 	}
 	
 	/**
 	 * Register the listener with the Location Manager to receive location updates
 	 */
 	public void startLocalization() {
-		if (!started) {
+		if (!started && hasSignificantlyOlderLocation()) {
+			
 			started = true;
-			locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_MIN_TIME, 0, this);
-			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, LOCATION_MIN_TIME, 0, this);
 			
-			IntentFilter gpsIntentFilter = new IntentFilter(GPS_TIMEOUT_ACTION);
+			// get all enabled providers
+			List<String> enabledProviders = locationManager.getProviders(true);
 			
-			Context context = AbstractApplication.get();
-			context.registerReceiver(new BroadcastReceiver() {
-				
-				@Override
-				public void onReceive(Context context, Intent intent) {
-					stopLocalization();
+			boolean gpsProviderEnabled = enabledProviders.contains(LocationManager.GPS_PROVIDER);
+			boolean networkProviderEnabled = enabledProviders.contains(LocationManager.NETWORK_PROVIDER);
+			
+			if (gpsProviderEnabled || networkProviderEnabled) {
+				if (gpsProviderEnabled) {
+					locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_MIN_TIME, 0, this);
 				}
-			}, gpsIntentFilter);
-			
-			Intent gpsIntent = new Intent(GPS_TIMEOUT_ACTION);
-			PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, gpsIntent,
-				PendingIntent.FLAG_CANCEL_CURRENT);
-			
-			AlarmManagerUtils.scheduleAlarm(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + GPS_TIMEOUT,
-				pendingIntent);
-			
-			Log.i(TAG, "Localization started");
+				if (networkProviderEnabled) {
+					locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, LOCATION_MIN_TIME, 0, this);
+				}
+				
+				Intent gpsIntent = new Intent(GPS_TIMEOUT_ACTION);
+				PendingIntent pendingIntent = PendingIntent.getBroadcast(AbstractApplication.get(), 0, gpsIntent,
+					PendingIntent.FLAG_CANCEL_CURRENT);
+				
+				AlarmManagerUtils.scheduleAlarm(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime()
+						+ GPS_TIMEOUT, pendingIntent);
+				
+				Log.i(TAG, "Localization started");
+			} else {
+				started = false;
+				Log.i(TAG, "All providers disabled");
+			}
 		}
 	}
 	
@@ -94,7 +119,12 @@ public class LocalizationManager implements LocationListener {
 	 */
 	@Override
 	public void onLocationChanged(Location location) {
-		this.location = location;
+		if (isBetterLocation(location, this.location)) {
+			Log.i(TAG, "Location changed");
+			this.location = location;
+		} else {
+			Log.i(TAG, "Location discarded");
+		}
 	}
 	
 	/**
@@ -124,6 +154,67 @@ public class LocalizationManager implements LocationListener {
 	}
 	
 	/**
+	 * Determines whether one Location reading is better than the current Location fix
+	 * 
+	 * @param location The new Location that you want to evaluate
+	 * @param currentBestLocation The current Location fix, to which you want to compare the new one
+	 */
+	protected boolean isBetterLocation(Location location, Location currentBestLocation) {
+		if (currentBestLocation == null) {
+			// A new location is always better than no location
+			return true;
+		}
+		
+		// Check whether the new location fix is newer or older
+		long timeDelta = location.getTime() - currentBestLocation.getTime();
+		boolean isSignificantlyNewer = timeDelta > MAXIMUM_TIME_DELTA;
+		boolean isSignificantlyOlder = timeDelta < -MAXIMUM_TIME_DELTA;
+		boolean isNewer = timeDelta > 0;
+		
+		// If it's been more than two minutes since the current location, use the new location
+		// because the user has likely moved
+		if (isSignificantlyNewer) {
+			return true;
+			// If the new location is more than two minutes older, it must be worse
+		} else if (isSignificantlyOlder) {
+			return false;
+		}
+		
+		// Check whether the new location fix is more or less accurate
+		int accuracyDelta = (int)(location.getAccuracy() - currentBestLocation.getAccuracy());
+		boolean isLessAccurate = accuracyDelta > 0;
+		boolean isMoreAccurate = accuracyDelta < 0;
+		boolean isSignificantlyLessAccurate = accuracyDelta > 200;
+		
+		// Check if the old and new location are from the same provider
+		boolean isFromSameProvider = isSameProvider(location.getProvider(), currentBestLocation.getProvider());
+		
+		// Determine location quality using a combination of timeliness and accuracy
+		if (isMoreAccurate) {
+			return true;
+		} else if (isNewer && !isLessAccurate) {
+			return true;
+		} else if (isNewer && !isSignificantlyLessAccurate && isFromSameProvider) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Checks whether two providers are the same
+	 * 
+	 * @param provider1
+	 * @param provider2
+	 * @return
+	 */
+	private boolean isSameProvider(String provider1, String provider2) {
+		if (provider1 == null) {
+			return provider2 == null;
+		}
+		return provider1.equals(provider2);
+	}
+	
+	/**
 	 * @return the location
 	 */
 	public Location getLocation() {
@@ -132,6 +223,14 @@ public class LocalizationManager implements LocationListener {
 	
 	public Boolean hasLocation() {
 		return location != null;
+	}
+	
+	public Boolean hasSignificantlyOlderLocation() {
+		if (location != null) {
+			long timeDelta = System.currentTimeMillis() - location.getTime();
+			return timeDelta > MAXIMUM_TIME_DELTA;
+		}
+		return true;
 	}
 	
 	public Double getLatitude() {

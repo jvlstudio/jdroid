@@ -55,7 +55,7 @@ public abstract class AbstractMockWebService implements MultipartWebService {
 		}
 		sb.deleteCharAt(sb.length() - 1);
 		
-		String suffix = getSuffix();
+		String suffix = getSuffix(sb.toString());
 		if (StringUtils.isNotBlank(suffix)) {
 			sb.append(SUFFIX_SEPARATOR);
 			sb.append(suffix);
@@ -225,7 +225,7 @@ public abstract class AbstractMockWebService implements MultipartWebService {
 	/**
 	 * @return The suffix to add to the mock file
 	 */
-	protected String getSuffix() {
+	protected String getSuffix(String path) {
 		return null;
 	}
 	
