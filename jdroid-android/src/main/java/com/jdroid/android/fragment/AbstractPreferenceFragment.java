@@ -1,8 +1,11 @@
 package com.jdroid.android.fragment;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.preference.PreferenceFragment;
 import android.view.View;
 import com.google.ads.AdSize;
+import com.jdroid.android.context.DefaultApplicationContext;
 import com.jdroid.android.domain.User;
 import com.jdroid.android.usecase.DefaultUseCase;
 
@@ -10,10 +13,19 @@ import com.jdroid.android.usecase.DefaultUseCase;
  * 
  * @author Maxi Rosson
  */
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public abstract class AbstractPreferenceFragment extends PreferenceFragment implements FragmentIf {
 	
 	protected FragmentIf getFragmentIf() {
 		return (FragmentIf)this.getActivity();
+	}
+	
+	/**
+	 * @see com.jdroid.android.fragment.FragmentIf#getAndroidApplicationContext()
+	 */
+	@Override
+	public DefaultApplicationContext getAndroidApplicationContext() {
+		return getFragmentIf().getAndroidApplicationContext();
 	}
 	
 	/**

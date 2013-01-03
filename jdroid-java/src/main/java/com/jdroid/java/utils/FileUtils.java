@@ -27,10 +27,10 @@ import com.jdroid.java.exception.UnexpectedException;
  */
 public abstract class FileUtils {
 	
+	private static final Logger LOGGER = LoggerUtils.getLogger(FileUtils.class);
+	
 	// Amount of bytes on a megabyte
 	public static final int BYTES_TO_MB = 1048576;
-	
-	private static final Logger LOGGER = LoggerUtils.getLogger(FileUtils.class);
 	private static final int BUFFER_SIZE = 16384;
 	
 	/**

@@ -3,6 +3,7 @@ package com.jdroid.android.fragment;
 import android.app.Activity;
 import android.view.View;
 import com.google.ads.AdSize;
+import com.jdroid.android.context.DefaultApplicationContext;
 import com.jdroid.android.dialog.LoadingDialog;
 import com.jdroid.android.domain.User;
 import com.jdroid.android.usecase.DefaultUseCase;
@@ -13,6 +14,8 @@ import com.jdroid.android.usecase.listener.DefaultUseCaseListener;
  * @author Maxi Rosson
  */
 public interface FragmentIf extends DefaultUseCaseListener {
+	
+	public DefaultApplicationContext getAndroidApplicationContext();
 	
 	/**
 	 * Finds a view that was identified by the id attribute from the XML that was processed in {@link Activity#onCreate}

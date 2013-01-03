@@ -10,6 +10,7 @@ import com.jdroid.java.exception.UnexpectedException;
 import com.jdroid.java.http.HttpClientFactory;
 import com.jdroid.java.http.HttpWebService;
 import com.jdroid.java.http.HttpWebServiceProcessor;
+import com.jdroid.java.http.MimeType;
 import com.jdroid.java.http.MultipartWebService;
 import com.jdroid.java.marshaller.MarshallerMode;
 import com.jdroid.java.marshaller.MarshallerProvider;
@@ -74,7 +75,6 @@ public class MultipartHttpPostWebService extends HttpPostWebService implements M
 	 */
 	@Override
 	public void addJsonPart(String name, Object value) {
-		addPart(name, MarshallerProvider.get().marshall(value, MarshallerMode.COMPLETE, null),
-			HttpWebService.JSON_CONTENT_TYPE);
+		addPart(name, MarshallerProvider.get().marshall(value, MarshallerMode.COMPLETE, null), MimeType.JSON.toString());
 	}
 }

@@ -19,5 +19,4 @@ public class ObjectArrays {
 	public static <T> T[] newArray(Class<T> type, int length) {
 		return (T[])Array.newInstance(type, length);
 	}
-	
 }

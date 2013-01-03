@@ -1,4 +1,4 @@
-package com.jdroid.android.fragment;
+package com.jdroid.android.date;
 
 import java.util.Date;
 import android.os.Bundle;
@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.TimePicker;
 import com.jdroid.android.R;
 import com.jdroid.android.dialog.AbstractDialogFragment;
-import com.jdroid.android.utils.AndroidUtils;
 import com.jdroid.java.utils.DateUtils;
 
 /**
@@ -56,11 +55,6 @@ public class TimePickerDialogFragment extends AbstractDialogFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		// Google TV is not displaying the title of the dialog.
-		if (AndroidUtils.isGoogleTV()) {
-			setStyle(STYLE_NO_TITLE, 0);
-		}
 		
 		Bundle args = getArguments();
 		if (args != null) {

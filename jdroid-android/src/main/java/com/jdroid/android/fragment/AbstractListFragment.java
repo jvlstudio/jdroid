@@ -14,6 +14,7 @@ import com.actionbarsherlock.app.SherlockListFragment;
 import com.google.ads.AdSize;
 import com.jdroid.android.AbstractApplication;
 import com.jdroid.android.R;
+import com.jdroid.android.context.DefaultApplicationContext;
 import com.jdroid.android.domain.User;
 import com.jdroid.android.fragment.BaseFragment.UseCaseTrigger;
 import com.jdroid.android.usecase.DefaultAbstractUseCase;
@@ -33,6 +34,14 @@ public abstract class AbstractListFragment<T> extends SherlockListFragment imple
 	
 	protected FragmentIf getFragmentIf() {
 		return (FragmentIf)this.getActivity();
+	}
+	
+	/**
+	 * @see com.jdroid.android.fragment.FragmentIf#getAndroidApplicationContext()
+	 */
+	@Override
+	public DefaultApplicationContext getAndroidApplicationContext() {
+		return getFragmentIf().getAndroidApplicationContext();
 	}
 	
 	/**

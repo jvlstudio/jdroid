@@ -29,12 +29,16 @@ public abstract class FragmentContainerActivity extends AbstractFragmentActivity
 		if (savedInstanceState == null) {
 			FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 			fragmentTransaction.add(R.id.fragmentContainer, createNewFragment());
-			fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+			fragmentTransaction.setTransition(getTransition());
 			fragmentTransaction.commit();
 		}
 	}
 	
 	protected abstract Fragment createNewFragment();
+	
+	protected int getTransition() {
+		return FragmentTransaction.TRANSIT_FRAGMENT_FADE;
+	}
 	
 	public Fragment getFragment() {
 		return getSupportFragmentManager().findFragmentById(R.id.fragmentContainer);

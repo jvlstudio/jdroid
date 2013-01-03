@@ -17,6 +17,7 @@ import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeUtility;
 import org.apache.log4j.helpers.LogLog;
 import org.apache.log4j.net.SMTPAppender;
+import com.jdroid.java.utils.EncodingUtils;
 import com.sun.mail.smtp.SMTPTransport;
 
 /**
@@ -83,7 +84,8 @@ public class GmailSMTPAppender extends SMTPAppender {
 			} else {
 				try {
 					ByteArrayOutputStream os = new ByteArrayOutputStream();
-					Writer writer = new OutputStreamWriter(MimeUtility.encode(os, "quoted-printable"), "UTF-8");
+					Writer writer = new OutputStreamWriter(MimeUtility.encode(os, "quoted-printable"),
+							EncodingUtils.UTF8);
 					writer.write(s);
 					writer.close();
 					InternetHeaders headers = new InternetHeaders();

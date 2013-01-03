@@ -2,9 +2,12 @@ package com.jdroid.android.adapter;
 
 import java.util.Collection;
 import java.util.List;
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import com.jdroid.android.utils.AndroidUtils;
 import com.jdroid.java.collections.Lists;
 
 /**
@@ -38,6 +41,26 @@ public class BaseArrayAdapter<T> extends ArrayAdapter<T> {
 			}
 		}
 		notifyDataSetChanged();
+	}
+	
+	/**
+	 * Adds the specified Collection at the end of the array.
+	 * 
+	 * @param items The Collection to add at the end of the array.
+	 */
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	public void add(Collection<? extends T> items) {
+		if (AndroidUtils.isPreHoneycomb()) {
+			setNotifyOnChange(false);
+			if (items != null) {
+				for (T item : items) {
+					add(item);
+				}
+			}
+			notifyDataSetChanged();
+		} else {
+			super.addAll(items);
+		}
 	}
 	
 	/**

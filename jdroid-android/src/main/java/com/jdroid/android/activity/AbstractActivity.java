@@ -11,6 +11,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.google.ads.AdSize;
 import com.google.inject.Key;
 import com.jdroid.android.AbstractApplication;
+import com.jdroid.android.context.DefaultApplicationContext;
 import com.jdroid.android.domain.User;
 import com.jdroid.android.usecase.DefaultUseCase;
 
@@ -21,6 +22,14 @@ import com.jdroid.android.usecase.DefaultUseCase;
 public abstract class AbstractActivity extends SherlockActivity implements ActivityIf {
 	
 	private BaseActivity baseActivity;
+	
+	/**
+	 * @see com.jdroid.android.fragment.FragmentIf#getAndroidApplicationContext()
+	 */
+	@Override
+	public DefaultApplicationContext getAndroidApplicationContext() {
+		return baseActivity.getAndroidApplicationContext();
+	}
 	
 	/**
 	 * @see com.jdroid.android.activity.ActivityIf#onBeforeSetContentView()

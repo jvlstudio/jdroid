@@ -1,4 +1,4 @@
-package com.jdroid.android.activity;
+package com.jdroid.android.video;
 
 import java.io.File;
 import android.media.MediaPlayer;
@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.widget.VideoView;
 import com.jdroid.android.R;
+import com.jdroid.android.activity.AbstractActivity;
+import com.jdroid.android.activity.ActivityIf;
 
 /**
  * This activity reproduces full-screen video. <br />

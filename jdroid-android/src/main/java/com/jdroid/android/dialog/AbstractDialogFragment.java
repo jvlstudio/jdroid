@@ -5,6 +5,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.View;
 import com.google.ads.AdSize;
 import com.jdroid.android.AbstractApplication;
+import com.jdroid.android.context.DefaultApplicationContext;
 import com.jdroid.android.domain.User;
 import com.jdroid.android.fragment.BaseFragment;
 import com.jdroid.android.fragment.BaseFragment.UseCaseTrigger;
@@ -12,6 +13,7 @@ import com.jdroid.android.fragment.FragmentIf;
 import com.jdroid.android.usecase.DefaultAbstractUseCase;
 import com.jdroid.android.usecase.DefaultUseCase;
 import com.jdroid.android.usecase.listener.DefaultUseCaseListener;
+import com.jdroid.android.utils.AndroidUtils;
 
 /**
  * 
@@ -26,6 +28,14 @@ public class AbstractDialogFragment extends DialogFragment implements FragmentIf
 	}
 	
 	/**
+	 * @see com.jdroid.android.fragment.FragmentIf#getAndroidApplicationContext()
+	 */
+	@Override
+	public DefaultApplicationContext getAndroidApplicationContext() {
+		return AbstractApplication.get().getAndroidApplicationContext();
+	}
+	
+	/**
 	 * @see android.support.v4.app.Fragment#onCreate(android.os.Bundle)
 	 */
 	@Override
@@ -33,6 +43,11 @@ public class AbstractDialogFragment extends DialogFragment implements FragmentIf
 		super.onCreate(savedInstanceState);
 		baseFragment = AbstractApplication.get().createBaseFragment(this);
 		baseFragment.onCreate(savedInstanceState);
+		
+		// Google TV is not displaying the title of the dialog.
+		if (AndroidUtils.isGoogleTV()) {
+			setStyle(STYLE_NO_TITLE, 0);
+		}
 	}
 	
 	/**

@@ -2,7 +2,6 @@ package com.jdroid.javaweb.guava.predicate;
 
 import java.io.Serializable;
 import java.util.Collection;
-
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
@@ -47,5 +46,4 @@ public class ContainsPropertyPredicate<T> implements Predicate<T>, Serializable 
 	private boolean contains(Collection<?> collection, Object object) {
 		return Iterables.contains(collection, object);
 	}
-	
 }

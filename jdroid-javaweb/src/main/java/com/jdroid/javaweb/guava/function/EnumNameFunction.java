@@ -18,5 +18,4 @@ public class EnumNameFunction<E extends Enum<E>> implements Function<E, String>,
 	public String apply(E from) {
 		return from.name();
 	}
-	
 }

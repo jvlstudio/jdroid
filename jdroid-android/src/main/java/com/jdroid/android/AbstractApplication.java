@@ -22,6 +22,7 @@ import com.jdroid.android.images.BitmapLruCache;
 import com.jdroid.android.utils.AlertDialogUtils;
 import com.jdroid.android.utils.SharedPreferencesUtils;
 import com.jdroid.android.utils.ToastUtils;
+import com.jdroid.java.exception.UnexpectedException;
 import com.jdroid.java.utils.DateUtils;
 import com.jdroid.java.utils.ExecutorUtils;
 import com.jdroid.java.utils.FileUtils;
@@ -300,7 +301,7 @@ public abstract class AbstractApplication extends RoboApplication {
 					}
 					Log.d(TAG, "Installation id: " + installationId);
 				} catch (Exception e) {
-					throw new RuntimeException(e);
+					throw new UnexpectedException(e);
 				}
 			}
 		});

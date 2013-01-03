@@ -136,6 +136,10 @@ public class AndroidUtils {
 		return android.os.Build.VERSION.SDK_INT;
 	}
 	
+	public static Boolean isPreHoneycomb() {
+		return android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB;
+	}
+	
 	public static String getPlatformVersion() {
 		return android.os.Build.VERSION.RELEASE;
 	}
@@ -168,6 +172,6 @@ public class AndroidUtils {
 	}
 	
 	public static Boolean supportsContextualActionBar() {
-		return (AndroidUtils.getApiLevel() >= 11) && !AndroidUtils.isGoogleTV();
+		return !AndroidUtils.isPreHoneycomb() && !AndroidUtils.isGoogleTV();
 	}
 }

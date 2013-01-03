@@ -11,5 +11,4 @@ public class StringToLongFunction implements Function<String, Long> {
 	public Long apply(String input) {
 		return Long.parseLong(input);
 	}
-	
 }

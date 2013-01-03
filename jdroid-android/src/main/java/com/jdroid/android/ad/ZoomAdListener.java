@@ -64,5 +64,4 @@ public class ZoomAdListener implements AdListener {
 		zoomIn.setDuration(500);
 		adView.startAnimation(zoomIn);
 	}
-	
 }

@@ -22,10 +22,11 @@ import com.jdroid.android.ActivityLauncher;
 import com.jdroid.android.R;
 import com.jdroid.android.ad.AdLoader;
 import com.jdroid.android.analytics.AnalyticsTracker;
+import com.jdroid.android.context.DefaultApplicationContext;
 import com.jdroid.android.context.SecurityContext;
 import com.jdroid.android.dialog.LoadingDialog;
 import com.jdroid.android.domain.User;
-import com.jdroid.android.intent.LogoutIntent;
+import com.jdroid.android.intent.ClearTaskIntent;
 import com.jdroid.android.usecase.DefaultUseCase;
 import com.jdroid.android.utils.AndroidUtils;
 import com.jdroid.java.collections.Maps;
@@ -41,7 +42,7 @@ public class BaseActivity implements ActivityIf {
 	
 	private Activity activity;
 	private LoadingDialog loadingDialog;
-	private BroadcastReceiver logoutBroadcastReceiver;
+	private BroadcastReceiver clearTaskBroadcastReceiver;
 	private Map<Key<?>, Object> scopedObjects = Maps.newHashMap();
 	
 	/**
@@ -57,6 +58,14 @@ public class BaseActivity implements ActivityIf {
 	
 	protected Activity getActivity() {
 		return activity;
+	}
+	
+	/**
+	 * @see com.jdroid.android.fragment.FragmentIf#getAndroidApplicationContext()
+	 */
+	@Override
+	public DefaultApplicationContext getAndroidApplicationContext() {
+		return AbstractApplication.get().getAndroidApplicationContext();
 	}
 	
 	/**
@@ -101,15 +110,19 @@ public class BaseActivity implements ActivityIf {
 				activity.setContentView(getContentView());
 				getActivityIf().onAfterSetContentView(savedInstanceState);
 			}
-			if ((AndroidUtils.getApiLevel() < 11) && getActivityIf().requiresAuthentication()) {
-				logoutBroadcastReceiver = new BroadcastReceiver() {
+			if (AndroidUtils.isPreHoneycomb()) {
+				clearTaskBroadcastReceiver = new BroadcastReceiver() {
 					
 					@Override
 					public void onReceive(Context context, Intent intent) {
-						activity.finish();
+						Boolean requiresAuthentication = intent.getBooleanExtra(
+							ClearTaskIntent.REQUIRES_AUTHENTICATION_EXTRA, true);
+						if (!requiresAuthentication || getActivityIf().requiresAuthentication()) {
+							activity.finish();
+						}
 					}
 				};
-				activity.registerReceiver(logoutBroadcastReceiver, LogoutIntent.newIntentFilter());
+				activity.registerReceiver(clearTaskBroadcastReceiver, ClearTaskIntent.newIntentFilter());
 			}
 		}
 		
@@ -161,8 +174,8 @@ public class BaseActivity implements ActivityIf {
 	
 	public void onDestroy() {
 		Log.v(TAG, "Executing onDestroy on " + activity);
-		if (logoutBroadcastReceiver != null) {
-			activity.unregisterReceiver(logoutBroadcastReceiver);
+		if (clearTaskBroadcastReceiver != null) {
+			activity.unregisterReceiver(clearTaskBroadcastReceiver);
 		}
 		dismissLoading();
 		RoboGuice.destroyInjector(activity);

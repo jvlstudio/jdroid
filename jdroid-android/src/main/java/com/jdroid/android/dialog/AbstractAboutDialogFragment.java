@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.jdroid.android.R;
 import com.jdroid.android.utils.AndroidUtils;
 import com.jdroid.java.context.GitContext;
+import com.jdroid.java.http.MimeType;
 import com.jdroid.java.utils.DateUtils;
 
 /**
@@ -22,11 +23,9 @@ import com.jdroid.java.utils.DateUtils;
  */
 public abstract class AbstractAboutDialogFragment extends AbstractDialogFragment {
 	
-	private static final String TEXT_MIME_TYPE = "text/plain";
-	
 	public void show(Activity activity) {
 		FragmentManager fm = ((FragmentActivity)activity).getSupportFragmentManager();
-		show(fm, "aboutDialogFragment");
+		show(fm, getClass().getSimpleName());
 	}
 	
 	/**
@@ -126,7 +125,7 @@ public abstract class AbstractAboutDialogFragment extends AbstractDialogFragment
 				@Override
 				public void onClick(View v) {
 					Intent intent = new Intent(Intent.ACTION_SEND);
-					intent.setType(TEXT_MIME_TYPE);
+					intent.setType(MimeType.TEXT.toString());
 					intent.putExtra(Intent.EXTRA_SUBJECT, shareEmailSubject);
 					intent.putExtra(Intent.EXTRA_TEXT, shareEmailContent);
 					startActivity(Intent.createChooser(intent, getString(R.string.shareTitle, getAppName())));

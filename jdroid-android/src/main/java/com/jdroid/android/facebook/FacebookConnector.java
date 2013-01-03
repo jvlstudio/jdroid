@@ -134,7 +134,7 @@ public class FacebookConnector {
 	 * @param activity The {@link Activity} where the authorization dialog will be shown.
 	 */
 	public void connect(Activity activity) {
-		Log.d(TAG, "Attempting to connect to Facebook..");
+		Log.d(TAG, "Attempting to connect to Facebook.");
 		facebook.authorize(activity, new DefaultFacebookDialogListener());
 	}
 	

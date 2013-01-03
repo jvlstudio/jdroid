@@ -173,7 +173,7 @@ public abstract class StringUtils {
 				} else {
 					
 					// The words are not truncated and the ellipsis is not added
-					List<String> words = Lists.newArrayList(text.split(" "));
+					List<String> words = Lists.newArrayList(text.split(SPACE));
 					Iterator<String> it = words.iterator();
 					int usedChars = 0;
 					Boolean exit = false;
@@ -181,7 +181,7 @@ public abstract class StringUtils {
 						String word = it.next();
 						int increment = usedChars == 0 ? word.length() : word.length() + 1;
 						if ((usedChars + increment) <= maxCharacters) {
-							truncatedTextBuilder.append(usedChars == 0 ? word : " " + word);
+							truncatedTextBuilder.append(usedChars == 0 ? word : SPACE + word);
 							usedChars += increment;
 						} else {
 							exit = true;

@@ -1,4 +1,4 @@
-package com.jdroid.android.activity;
+package com.jdroid.android.picture;
 
 import com.jdroid.android.domain.FileContent;
 

@@ -1,9 +1,10 @@
-package com.jdroid.android.fragment;
+package com.jdroid.android.date;
 
 import java.io.Serializable;
 import java.util.Date;
 import android.annotation.TargetApi;
 import android.app.Dialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -116,11 +117,6 @@ public class DatePickerDialogFragment extends AbstractDialogFragment implements 
 			onDateSetListener = args.containsKey(LISTENER_EXTRA) ? (OnDateSetListener)args.getSerializable(LISTENER_EXTRA)
 					: null;
 		}
-		
-		// Google TV is not displaying the title of the dialog.
-		if (AndroidUtils.isGoogleTV()) {
-			setStyle(STYLE_NO_TITLE, 0);
-		}
 	}
 	
 	private OnDateSetListener getOnDateSetListener() {
@@ -131,7 +127,7 @@ public class DatePickerDialogFragment extends AbstractDialogFragment implements 
 	 * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup,
 	 *      android.os.Bundle)
 	 */
-	@TargetApi(12)
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.date_picker_dialog_fragment, container, false);
@@ -146,7 +142,7 @@ public class DatePickerDialogFragment extends AbstractDialogFragment implements 
 		if (titleResId != null) {
 			getDialog().setTitle(titleResId);
 		}
-		if (AndroidUtils.getApiLevel() > 10) {
+		if (AndroidUtils.getApiLevel() > Build.VERSION_CODES.GINGERBREAD_MR1) {
 			if (minDate != null) {
 				datePicker.setMinDate(minDate.getTime());
 			}
@@ -154,7 +150,7 @@ public class DatePickerDialogFragment extends AbstractDialogFragment implements 
 				datePicker.setMaxDate(maxDate.getTime());
 			}
 			
-			if (AndroidUtils.getApiLevel() > 11) {
+			if (AndroidUtils.getApiLevel() > Build.VERSION_CODES.HONEYCOMB) {
 				datePicker.getCalendarView().setShowWeekNumber(false);
 			}
 		}

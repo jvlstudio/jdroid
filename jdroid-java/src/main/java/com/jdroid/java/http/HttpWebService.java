@@ -36,10 +36,6 @@ public abstract class HttpWebService implements WebService {
 	public static final String GZIP_ENCODING = "gzip";
 	public static final String ACCEPT_HEADER = "accept";
 	public static final String CONTENT_TYPE_HEADER = "content-type";
-	public static final String JSON_CONTENT_TYPE = "application/json";
-	public static final String PNG_CONTENT_TYPE = "image/png";
-	
-	public static final String SEPARATOR = "/";
 	
 	private static final String QUESTION_MARK = "?";
 	private static final String EQUALS = "=";
@@ -179,7 +175,8 @@ public abstract class HttpWebService implements WebService {
 	}
 	
 	protected String getUrlSegments() {
-		return urlSegments.isEmpty() ? StringUtils.EMPTY : SEPARATOR + StringUtils.join(urlSegments, SEPARATOR);
+		return urlSegments.isEmpty() ? StringUtils.EMPTY : StringUtils.SLASH
+				+ StringUtils.join(urlSegments, StringUtils.SLASH);
 	}
 	
 	/**

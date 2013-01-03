@@ -17,14 +17,13 @@ import com.jdroid.java.http.put.HttpPutWebService;
 import com.jdroid.java.http.put.MultipartHttpPutWebService;
 import com.jdroid.java.marshaller.MarshallerMode;
 import com.jdroid.java.marshaller.MarshallerProvider;
+import com.jdroid.java.utils.StringUtils;
 
 /**
  * 
  * @author Maxi Rosson
  */
 public abstract class AbstractApiService {
-	
-	public static final String SEPARATOR = "/";
 	
 	protected WebService newGetService(Object... urlSegments) {
 		return newGetService(false, urlSegments);
@@ -131,7 +130,7 @@ public abstract class AbstractApiService {
 		builder.append(serverUrl);
 		if (urlSegments != null) {
 			for (int i = 0; i < urlSegments.length; i++) {
-				builder.append(SEPARATOR);
+				builder.append(StringUtils.SLASH);
 				builder.append(urlSegments[i]);
 			}
 		}

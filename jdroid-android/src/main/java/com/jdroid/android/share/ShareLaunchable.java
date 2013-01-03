@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
+import com.jdroid.java.http.MimeType;
 
 /**
  * App that can be used to share some content.
@@ -13,9 +14,6 @@ import android.graphics.drawable.Drawable;
  * @author Estefania Caravatti
  */
 public class ShareLaunchable {
-	
-	/** Intent type to share plain text */
-	private static final String SHARE_INTENT_TYPE = "text/plain";
 	
 	private CharSequence name;
 	private Drawable icon;
@@ -50,7 +48,7 @@ public class ShareLaunchable {
 	
 	public static Intent getShareIntent() {
 		Intent intent = new Intent(android.content.Intent.ACTION_SEND);
-		intent.setType(SHARE_INTENT_TYPE);
+		intent.setType(MimeType.TEXT.toString());
 		intent.addCategory(Intent.CATEGORY_DEFAULT);
 		return intent;
 	}

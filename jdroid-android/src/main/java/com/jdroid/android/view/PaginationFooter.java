@@ -61,7 +61,7 @@ public class PaginationFooter extends LinearLayout implements PaginationListener
 			@Override
 			public void run() {
 				BaseArrayAdapter<Object> baseArrayAdapter = (BaseArrayAdapter<Object>)abstractListActivity.getListAdapter();
-				baseArrayAdapter.addAll(items);
+				baseArrayAdapter.add(items);
 			}
 		});
 		loading = false;

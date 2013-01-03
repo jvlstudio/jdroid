@@ -1,4 +1,4 @@
-package com.jdroid.android.activity;
+package com.jdroid.android.picture;
 
 import java.io.File;
 import android.app.Activity;
@@ -62,19 +62,6 @@ public class PictureDialogFragment extends AbstractDialogFragment {
 	}
 	
 	/**
-	 * @see com.jdroid.android.dialog.AbstractDialogFragment#onCreate(android.os.Bundle)
-	 */
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
-		// Google TV is not displaying the title of the dialog.
-		if (AndroidUtils.isGoogleTV()) {
-			setStyle(STYLE_NO_TITLE, 0);
-		}
-	}
-	
-	/**
 	 * @see android.support.v4.app.Fragment#onViewCreated(android.view.View, android.os.Bundle)
 	 */
 	@Override
@@ -125,8 +112,7 @@ public class PictureDialogFragment extends AbstractDialogFragment {
 			Uri path = null;
 			switch (requestCode) {
 			
-			// Set the default path for the camera pictures if the picture is
-			// obtained from the camera.
+			// Set the default path for the camera pictures if the picture is obtained from the camera.
 				case CAMERA_REQUEST_CODE:
 					path = outputFileUri;
 					break;
@@ -141,5 +127,4 @@ public class PictureDialogFragment extends AbstractDialogFragment {
 			dismissAllowingStateLoss();
 		}
 	}
-	
 }

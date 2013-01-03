@@ -24,7 +24,7 @@ public class InMemoryRepository<T extends Identifiable> implements Repository<T>
 	@Override
 	public void add(T item) {
 		if (item.getId() == null) {
-			ReflectionUtils.set(item, "id", nextId++);
+			ReflectionUtils.setId(item, nextId++);
 		}
 		items.put(item.getId(), item);
 	}

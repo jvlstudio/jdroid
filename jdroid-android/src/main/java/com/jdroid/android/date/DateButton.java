@@ -1,4 +1,4 @@
-package com.jdroid.android.view;
+package com.jdroid.android.date;
 
 import java.util.Date;
 import android.content.Context;
@@ -9,56 +9,54 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import com.jdroid.android.fragment.TimePickerDialogFragment;
-import com.jdroid.android.utils.AndroidDateUtils;
 import com.jdroid.java.utils.DateUtils;
 
 /**
  * 
  * @author Maxi Rosson
  */
-public class TimeButton extends Button {
+public class DateButton extends Button {
 	
-	private Date time;
+	private Date date;
 	
-	public TimeButton(Context context, AttributeSet attrs) {
+	public DateButton(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		if (isInEditMode()) {
-			setText("11:13 PM");
+			setText("Sat, Dec 15, 2012");
 		}
 	}
 	
-	public void init(final Fragment fragment, final Date defaultTime) {
-		setTime(defaultTime);
+	public void init(final Fragment fragment, final Date defaultDate) {
+		setDate(defaultDate);
 		setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				TimePickerDialogFragment.show(fragment, time);
+				DatePickerDialogFragment.show(fragment, date);
 			}
 		});
 	}
 	
-	public void setTime(Date time) {
-		this.time = time;
-		setText(AndroidDateUtils.formatTime(time));
+	public void setDate(Date date) {
+		this.date = date;
+		setText(DateUtils.format(date, DateUtils.EEMMMDYYYY_DATE_FORMAT));
 	}
 	
-	public Date getTime() {
-		return time;
+	public Date getDate() {
+		return date;
 	}
 	
 	@Override
 	public Parcelable onSaveInstanceState() {
 		Parcelable superState = super.onSaveInstanceState();
-		return new SavedState(superState, time);
+		return new SavedState(superState, date);
 	}
 	
 	@Override
 	public void onRestoreInstanceState(Parcelable state) {
 		SavedState ss = (SavedState)state;
 		super.onRestoreInstanceState(ss.getSuperState());
-		setTime(ss.time);
+		setDate(ss.date);
 	}
 	
 	/**
@@ -66,14 +64,14 @@ public class TimeButton extends Button {
 	 */
 	private static class SavedState extends BaseSavedState {
 		
-		private Date time;
+		private Date date;
 		
 		/**
 		 * Constructor called from {@link DatePicker#onSaveInstanceState()}
 		 */
-		private SavedState(Parcelable superState, Date time) {
+		private SavedState(Parcelable superState, Date date) {
 			super(superState);
-			this.time = time;
+			this.date = date;
 		}
 		
 		/**
@@ -81,14 +79,15 @@ public class TimeButton extends Button {
 		 */
 		private SavedState(Parcel in) {
 			super(in);
-			time = DateUtils.getTime(in.readInt(), in.readInt());
+			date = DateUtils.getDate(in.readInt(), in.readInt(), in.readInt());
 		}
 		
 		@Override
 		public void writeToParcel(Parcel dest, int flags) {
 			super.writeToParcel(dest, flags);
-			dest.writeInt(DateUtils.getHour(time, true));
-			dest.writeInt(DateUtils.getMinute(time));
+			dest.writeInt(DateUtils.getYear(date));
+			dest.writeInt(DateUtils.getMonth(date));
+			dest.writeInt(DateUtils.getDay(date));
 		}
 		
 		@SuppressWarnings({ "hiding", "unused" })

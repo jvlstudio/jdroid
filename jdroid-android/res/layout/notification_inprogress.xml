@@ -19,7 +19,7 @@
 			android:layout_gravity="center_horizontal" style="?android:attr/progressBarStyleHorizontal"
 			android:layout_centerInParent="true" />
 		<TextView android:id="@+id/progressPercentage" android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:layout_centerInParent="true" android:textColor="@android:color/white" android:textSize="12dp"
+			android:layout_centerInParent="true" android:textColor="@android:color/white" android:textSize="12sp"
 			android:textStyle="bold" android:text="@string/zeroPercent" />
 	</RelativeLayout>
 </LinearLayout>

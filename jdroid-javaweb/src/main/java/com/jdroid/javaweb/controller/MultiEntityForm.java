@@ -47,5 +47,4 @@ public class MultiEntityForm extends AbstractForm {
 	private String getFormIds() {
 		return postIds != null ? postIds : queryParamIds;
 	}
-	
 }

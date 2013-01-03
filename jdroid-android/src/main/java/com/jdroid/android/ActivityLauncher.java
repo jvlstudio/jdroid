@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import com.jdroid.android.intent.ClearTaskIntent;
+import com.jdroid.android.utils.AndroidUtils;
 
 /**
  * Launcher for all the activities of the application
@@ -23,6 +25,19 @@ public class ActivityLauncher {
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			currentActivity.startActivity(intent);
 		}
+	}
+	
+	public static void launchActivityClearTask(Class<? extends Activity> targetActivityClass,
+			Boolean requiresAuthentication) {
+		Activity currentActivity = AbstractApplication.get().getCurrentActivity();
+		Intent intent = new Intent(AbstractApplication.get(), targetActivityClass);
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		if (AndroidUtils.isPreHoneycomb()) {
+			ClearTaskIntent.execute(true);
+		} else {
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		}
+		currentActivity.startActivity(intent);
 	}
 	
 	/**

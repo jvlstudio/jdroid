@@ -1,4 +1,4 @@
-package com.jdroid.android.view;
+package com.jdroid.android.date;
 
 import android.content.Context;
 import android.os.Handler;

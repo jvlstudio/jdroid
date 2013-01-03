@@ -20,6 +20,7 @@ import com.google.inject.Key;
 import com.jdroid.android.AbstractApplication;
 import com.jdroid.android.R;
 import com.jdroid.android.adapter.BaseArrayAdapter;
+import com.jdroid.android.context.DefaultApplicationContext;
 import com.jdroid.android.domain.User;
 import com.jdroid.android.search.SearchResult;
 import com.jdroid.android.search.SearchResult.PaginationListener;
@@ -39,6 +40,14 @@ public abstract class AbstractListActivity<T> extends SherlockListActivity imple
 	
 	private BaseActivity baseActivity;
 	private PaginationFooter paginationFooter;
+	
+	/**
+	 * @see com.jdroid.android.fragment.FragmentIf#getAndroidApplicationContext()
+	 */
+	@Override
+	public DefaultApplicationContext getAndroidApplicationContext() {
+		return baseActivity.getAndroidApplicationContext();
+	}
 	
 	/**
 	 * @see com.jdroid.android.activity.ActivityIf#onBeforeSetContentView()
