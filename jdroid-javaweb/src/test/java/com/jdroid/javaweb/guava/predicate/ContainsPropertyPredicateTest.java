@@ -7,7 +7,6 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import com.google.common.collect.Lists;
-import com.jdroid.javaweb.guava.predicate.ContainsPropertyPredicate;
 
 /**
  * Test {@link ContainsPropertyPredicate}
@@ -63,9 +62,6 @@ public class ContainsPropertyPredicateTest {
 		TEST_3;
 	}
 	
-	/**
-	 * @author Jorge Santoro
-	 */
 	public class TestObject {
 		
 		private TestEnum testEnum;

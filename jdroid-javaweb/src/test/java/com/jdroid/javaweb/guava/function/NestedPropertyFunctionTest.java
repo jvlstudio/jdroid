@@ -7,8 +7,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import com.google.common.collect.Lists;
 import com.jdroid.java.exception.UnexpectedException;
-import com.jdroid.javaweb.guava.function.NestedPropertyFunction;
-import com.jdroid.javaweb.guava.function.PropertyFunction;
 
 /**
  * Tests the {@link PropertyFunction} class
@@ -23,15 +21,15 @@ public class NestedPropertyFunctionTest {
 	public Iterator<Object[]> getApply() {
 		List<Object[]> cases = Lists.newArrayList();
 		TestObject object1 = new TestObject();
-		TestObject object2 = new TestObject("SomeValue");
 		TestObject parentObject1 = new TestObject(object1);
-		TestObject parentObject2 = new TestObject(object2);
 		cases.add(new Object[] { parentObject1, "nested", object1 });
 		cases.add(new Object[] { parentObject1, "value", null });
 		cases.add(new Object[] { parentObject1, "nested.value", null });
 		cases.add(new Object[] { parentObject1, "nested.nested", null });
 		cases.add(new Object[] { parentObject1, "nested.nested.value", null });
 		
+		TestObject object2 = new TestObject("SomeValue");
+		TestObject parentObject2 = new TestObject(object2);
 		cases.add(new Object[] { parentObject2, "nested", object2 });
 		cases.add(new Object[] { parentObject2, "value", null });
 		cases.add(new Object[] { parentObject2, "nested.value", "SomeValue" });

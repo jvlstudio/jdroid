@@ -16,7 +16,6 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.google.ads.AdSize;
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.inject.Key;
 import com.jdroid.android.AbstractApplication;
 import com.jdroid.android.ActivityLauncher;

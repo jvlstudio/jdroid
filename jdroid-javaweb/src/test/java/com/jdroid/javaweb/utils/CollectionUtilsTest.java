@@ -10,7 +10,6 @@ import com.google.common.base.Function;
 import com.google.common.base.Functions;
 import com.google.common.collect.Lists;
 import com.jdroid.javaweb.guava.predicate.EqualsPropertyPredicate;
-import com.jdroid.javaweb.utils.CollectionUtils;
 
 /**
  * Tests the {@link CollectionUtils}
@@ -85,9 +84,6 @@ public class CollectionUtilsTest {
 			CollectionUtils.findFirstMatch(new EqualsPropertyPredicate<TestObject>("value", value), objects), expected);
 	}
 	
-	/**
-	 * @author Jorge Santoro
-	 */
 	public class TestObject {
 		
 		private Object value;

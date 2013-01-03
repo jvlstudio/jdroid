@@ -21,19 +21,11 @@ public class DateUtilsTest {
 	@DataProvider
 	public Iterator<Object[]> formatDataProvider() {
 		List<Object[]> cases = Lists.newArrayList();
-		// TODO Fix this tests
-		// cases.add(new Object[] { DateUtils.getDate(2010, Calendar.AUGUST, 10), DateUtils.MMDDYYYY_DATE_FORMAT,
-		// "08/10/2010" });
-		// cases.add(new Object[] { DateUtils.getDate(2010, Calendar.AUGUST, 10), DateUtils.MMDDYYYY_DATE_FORMAT,
-		// "08/10/10" });
-		// cases.add(new Object[] { DateUtils.getDate(2010, Calendar.AUGUST, 10), DateUtils.DATE_PATTERN_SIMPLE,
-		// "8/10/2010" });
-		// cases.add(new Object[] { DateUtils.getDate(2010, Calendar.JANUARY, 8), DateUtils.DATE_PATTERN_SIMPLE,
-		// "1/8/2010" });
-		// cases.add(new Object[] { DateUtils.getDate(2010, Calendar.DECEMBER, 10), DateUtils.DATE_PATTERN_SIMPLE,
-		// "12/10/2010" });
-		// cases.add(new Object[] { DateUtils.getDate(2010, Calendar.DECEMBER, 10), DateUtils.DATE_TIME_PATTERN,
-		// "12/10/2010 00:00:00" });
+		cases.add(new Object[] { DateUtils.getDate(2010, Calendar.AUGUST, 10), DateUtils.MMDDYYYY_DATE_FORMAT,
+				"08/10/2010" });
+		cases.add(new Object[] { DateUtils.getDate(2010, Calendar.AUGUST, 10), DateUtils.MMDDYYYY_SLASH_DATE_FORMAT,
+				"08-10-2010" });
+		cases.add(new Object[] { DateUtils.getTime(5, 30, true), DateUtils.HHMMAA_DATE_FORMAT, "05:30 AM" });
 		return cases.iterator();
 	}
 	
