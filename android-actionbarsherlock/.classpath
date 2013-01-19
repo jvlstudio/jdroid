@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="var" path="M2_REPO/android/compatibility/android-support-v4/r10/android-support-v4-r10.jar"/>
+	<classpathentry kind="var" path="M2_REPO/android/compatibility/android-support-v4/r11/android-support-v4-r11.jar"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="output" path="bin/classes"/>

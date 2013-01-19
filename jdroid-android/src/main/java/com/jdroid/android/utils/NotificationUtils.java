@@ -198,7 +198,7 @@ public class NotificationUtils {
 	}
 	
 	public static void sendNotification(int id, NotificationCompat.Builder builder) {
-		NOTIFICATION_MANAGER.notify(id, builder.getNotification());
+		NOTIFICATION_MANAGER.notify(id, builder.build());
 	}
 	
 	public static void cancelNotification(int id) {
