@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import com.jdroid.android.R;
 import com.jdroid.android.adapter.BaseArrayAdapter;
@@ -31,8 +30,8 @@ public abstract class AbstractSearchFragment<T> extends AbstractListFragment<T> 
 	
 	private int threshold = 1;
 	private EditText searchText;
-	private ImageView searchButton;
-	private ImageView cancelButton;
+	private View searchButton;
+	private View cancelButton;
 	private TextView emptyLegend;
 	
 	/**
@@ -54,6 +53,7 @@ public abstract class AbstractSearchFragment<T> extends AbstractListFragment<T> 
 		getListView().getEmptyView().setVisibility(View.GONE);
 		
 		searchText = findView(R.id.searchText);
+		searchText.requestFocus();
 		if (isInstantSearchEnabled()) {
 			searchText.addTextChangedListener(getTextWatcher());
 		} else {
