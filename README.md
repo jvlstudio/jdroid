@@ -27,11 +27,12 @@ jdroid Java Web
 
 jdroid Android
 --------------
+* Google Maps v2 integration
 * In App Billing integration
-* RoboGuice integration
-* Analytics integration
+* Google Analytics integration
 * Google Cloud Messaging integration
 * AdMob integration
+* RoboGuice integration
 * Facebook integration
 * Twitter integration
 * Base Activity & Fragment implementations
@@ -39,7 +40,6 @@ jdroid Android
 * HTTP Cookies storing.
 * Remote image loading component
 * Disk & Memory Images Cache
-* Maps balloon component
 * Picture import (From camera or gallery) component
 * Barcode reading component
 * Coverflow component
