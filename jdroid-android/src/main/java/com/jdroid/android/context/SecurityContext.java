@@ -13,8 +13,6 @@ public class SecurityContext {
 	private static final SecurityContext INSTANCE = new SecurityContext();
 	
 	private UserRepository userRepository;
-	
-	/** The user logged in the application. */
 	private User user;
 	
 	/**
@@ -40,14 +38,16 @@ public class SecurityContext {
 	}
 	
 	/**
-	 * @return User
+	 * @return The user logged in the application
 	 */
 	public User getUser() {
 		return user;
 	}
 	
+	/**
+	 * @return Whether the user is authenticated or not
+	 */
 	public Boolean isAuthenticated() {
 		return user != null;
 	}
-	
 }

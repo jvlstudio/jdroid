@@ -2,8 +2,8 @@ package com.jdroid.android.filecontent;
 
 import java.io.File;
 import android.net.Uri;
-import com.jdroid.android.AbstractApplication;
 import com.jdroid.android.domain.FileContent;
+import com.jdroid.android.utils.AndroidUtils;
 
 public class LocalFileContent extends FileContent {
 	
@@ -23,8 +23,7 @@ public class LocalFileContent extends FileContent {
 	 */
 	@Override
 	public Uri getUri() {
-		String packageName = AbstractApplication.get().getPackageName();
-		return Uri.parse(ANDROID_RESOURCE + packageName + File.separator + resourceId);
+		return Uri.parse(ANDROID_RESOURCE + AndroidUtils.getPackageName() + File.separator + resourceId);
 	}
 	
 }
