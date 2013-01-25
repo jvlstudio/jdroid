@@ -9,7 +9,6 @@ import android.os.Environment;
 import android.widget.VideoView;
 import com.jdroid.android.R;
 import com.jdroid.android.activity.AbstractActivity;
-import com.jdroid.android.activity.ActivityIf;
 
 /**
  * This activity reproduces full-screen video. <br />
@@ -55,7 +54,7 @@ public class VideoActivity extends AbstractActivity {
 		super.onCreate(savedInstanceState);
 		
 		video = findView(R.id.video);
-		showLoading(true);
+		showLoading();
 		
 		String path = null;
 		if (getIntent().getExtras().containsKey(LOCAL)) {

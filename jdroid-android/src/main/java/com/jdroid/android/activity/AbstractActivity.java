@@ -13,6 +13,7 @@ import com.google.inject.Key;
 import com.jdroid.android.AbstractApplication;
 import com.jdroid.android.context.DefaultApplicationContext;
 import com.jdroid.android.domain.User;
+import com.jdroid.android.loading.LoadingDialogBuilder;
 import com.jdroid.android.usecase.DefaultUseCase;
 
 /**
@@ -198,38 +199,6 @@ public abstract class AbstractActivity extends SherlockActivity implements Activ
 	}
 	
 	/**
-	 * @see com.jdroid.android.fragment.FragmentIf#showLoadingOnUIThread()
-	 */
-	@Override
-	public void showLoadingOnUIThread() {
-		baseActivity.showLoadingOnUIThread();
-	}
-	
-	/**
-	 * @see com.jdroid.android.fragment.FragmentIf#showLoadingOnUIThread(java.lang.Integer)
-	 */
-	@Override
-	public void showLoadingOnUIThread(Integer loadingResId) {
-		baseActivity.showLoadingOnUIThread(loadingResId);
-	}
-	
-	/**
-	 * @see com.jdroid.android.fragment.FragmentIf#showLoadingOnUIThread(java.lang.Boolean)
-	 */
-	@Override
-	public void showLoadingOnUIThread(Boolean cancelable) {
-		baseActivity.showLoadingOnUIThread(cancelable);
-	}
-	
-	/**
-	 * @see com.jdroid.android.fragment.FragmentIf#showLoadingOnUIThread(java.lang.Boolean, java.lang.Integer)
-	 */
-	@Override
-	public void showLoadingOnUIThread(Boolean cancelable, Integer loadingResId) {
-		baseActivity.showLoadingOnUIThread(cancelable, loadingResId);
-	}
-	
-	/**
 	 * @see com.jdroid.android.fragment.FragmentIf#showLoading()
 	 */
 	@Override
@@ -238,27 +207,27 @@ public abstract class AbstractActivity extends SherlockActivity implements Activ
 	}
 	
 	/**
-	 * @see com.jdroid.android.fragment.FragmentIf#showLoading(java.lang.Integer)
+	 * @see com.jdroid.android.fragment.FragmentIf#showLoading(com.jdroid.android.loading.LoadingDialogBuilder)
 	 */
 	@Override
-	public void showLoading(Integer loadingResId) {
-		baseActivity.showLoading(loadingResId);
+	public void showLoading(LoadingDialogBuilder builder) {
+		baseActivity.showLoading(builder);
 	}
 	
 	/**
-	 * @see com.jdroid.android.fragment.FragmentIf#showLoading(java.lang.Boolean)
+	 * @see com.jdroid.android.fragment.FragmentIf#showLoadingOnUIThread()
 	 */
 	@Override
-	public void showLoading(Boolean cancelable) {
-		baseActivity.showLoading(cancelable);
+	public void showLoadingOnUIThread() {
+		baseActivity.showLoadingOnUIThread();
 	}
 	
 	/**
-	 * @see com.jdroid.android.fragment.FragmentIf#showLoading(java.lang.Boolean, java.lang.Integer)
+	 * @see com.jdroid.android.fragment.FragmentIf#showLoadingOnUIThread(com.jdroid.android.loading.LoadingDialogBuilder)
 	 */
 	@Override
-	public void showLoading(Boolean cancelable, Integer loadingResId) {
-		baseActivity.showLoading(cancelable, loadingResId);
+	public void showLoadingOnUIThread(LoadingDialogBuilder builder) {
+		baseActivity.showLoadingOnUIThread(builder);
 	}
 	
 	/**

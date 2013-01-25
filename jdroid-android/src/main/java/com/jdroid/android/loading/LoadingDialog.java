@@ -1,4 +1,4 @@
-package com.jdroid.android.dialog;
+package com.jdroid.android.loading;
 
 import android.app.Dialog;
 import android.content.Context;

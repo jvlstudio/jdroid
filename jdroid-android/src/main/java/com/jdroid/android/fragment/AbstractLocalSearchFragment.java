@@ -1,8 +1,13 @@
 package com.jdroid.android.fragment;
 
+import android.os.Bundle;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.ArrayAdapter;
-import com.jdroid.android.fragment.BaseFragment.UseCaseTrigger;
+import android.widget.EditText;
+import android.widget.TextView;
+import com.jdroid.android.R;
+import com.jdroid.android.adapter.BaseArrayAdapter;
 import com.jdroid.android.listener.FilterListTextWatcher;
 
 /**
@@ -13,55 +18,42 @@ import com.jdroid.android.listener.FilterListTextWatcher;
  * 
  * @author Estefania Caravatti
  */
-public abstract class AbstractLocalSearchFragment<T> extends AbstractSearchFragment<T> {
+public abstract class AbstractLocalSearchFragment<T> extends AbstractListFragment<T> {
+	
+	private EditText searchText;
+	private TextView emptyLegend;
 	
 	/**
-	 * @see com.jdroid.android.fragment.AbstractSearchFragment#getUseCaseTrigger()
+	 * @see com.jdroid.android.fragment.AbstractListFragment#onViewCreated(android.view.View, android.os.Bundle)
 	 */
 	@Override
-	protected UseCaseTrigger getUseCaseTrigger() {
-		return UseCaseTrigger.ONCE;
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		
+		getListView().getEmptyView().setVisibility(View.GONE);
+		
+		searchText = findView(R.id.searchText);
+		searchText.requestFocus();
+		searchText.addTextChangedListener(getTextWatcher());
+		
+		emptyLegend = findView(android.R.id.empty);
+		emptyLegend.setText(getNoResultsResId());
+		
+		setListAdapter(createBaseArrayAdapter());
 	}
 	
-	@Override
+	protected abstract int getNoResultsResId();
+	
+	protected abstract BaseArrayAdapter<T> createBaseArrayAdapter();
+	
 	protected TextWatcher getTextWatcher() {
 		return new FilterListTextWatcher<T>() {
 			
-			@Override
-			public void doAfterTextChanged(String prefix) {
-				AbstractLocalSearchFragment.this.afterTextChanged(prefix.toString());
-			}
-			
+			@SuppressWarnings("unchecked")
 			@Override
 			public ArrayAdapter<T> getFilterableArrayAdapter() {
-				return AbstractLocalSearchFragment.this.getFilterableArrayAdapter();
+				return (BaseArrayAdapter<T>)getListAdapter();
 			}
 		};
-	}
-	
-	/**
-	 * @see com.jdroid.android.fragment.AbstractSearchFragment#doCancel()
-	 */
-	@Override
-	public void doCancel() {
-		getSearchText().setText(null);
-	}
-	
-	/**
-	 * @see com.jdroid.android.activity.AbstractSearchActivity#doSearch()
-	 */
-	@Override
-	protected void doSearch() {
-		// Do Nothing
-	}
-	
-	/**
-	 * @return The {@link ArrayAdapter} used to filter the results.
-	 */
-	protected abstract ArrayAdapter<T> getFilterableArrayAdapter();
-	
-	@Override
-	protected void afterTextChanged(String text) {
-		// Do Nothing
 	}
 }

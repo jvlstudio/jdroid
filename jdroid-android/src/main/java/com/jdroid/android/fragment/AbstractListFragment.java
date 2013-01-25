@@ -17,6 +17,7 @@ import com.jdroid.android.R;
 import com.jdroid.android.context.DefaultApplicationContext;
 import com.jdroid.android.domain.User;
 import com.jdroid.android.fragment.BaseFragment.UseCaseTrigger;
+import com.jdroid.android.loading.LoadingDialogBuilder;
 import com.jdroid.android.usecase.DefaultAbstractUseCase;
 import com.jdroid.android.usecase.DefaultUseCase;
 import com.jdroid.android.usecase.listener.DefaultUseCaseListener;
@@ -242,28 +243,11 @@ public abstract class AbstractListFragment<T> extends SherlockListFragment imple
 	}
 	
 	/**
-	 * @see com.jdroid.android.fragment.FragmentIf#showLoading(java.lang.Integer)
+	 * @see com.jdroid.android.fragment.FragmentIf#showLoading(com.jdroid.android.loading.LoadingDialogBuilder)
 	 */
 	@Override
-	public void showLoading(Integer loadingResId) {
-		getFragmentIf().showLoading(loadingResId);
-	}
-	
-	/**
-	 * @see com.jdroid.android.fragment.FragmentIf#showLoading(java.lang.Boolean)
-	 */
-	@Override
-	public void showLoading(Boolean cancelable) {
-		getFragmentIf().showLoading(cancelable);
-	}
-	
-	/**
-	 * @see com.jdroid.android.fragment.FragmentIf#showLoading(java.lang.Boolean, java.lang.Integer)
-	 */
-	@Override
-	public void showLoading(Boolean cancelable, Integer loadingResId) {
-		getFragmentIf().showLoading(cancelable, loadingResId);
-		
+	public void showLoading(LoadingDialogBuilder builder) {
+		getFragmentIf().showLoading(builder);
 	}
 	
 	/**
@@ -275,27 +259,11 @@ public abstract class AbstractListFragment<T> extends SherlockListFragment imple
 	}
 	
 	/**
-	 * @see com.jdroid.android.fragment.FragmentIf#showLoadingOnUIThread(java.lang.Integer)
+	 * @see com.jdroid.android.fragment.FragmentIf#showLoadingOnUIThread(com.jdroid.android.loading.LoadingDialogBuilder)
 	 */
 	@Override
-	public void showLoadingOnUIThread(Integer loadingResId) {
-		getFragmentIf().showLoadingOnUIThread(loadingResId);
-	}
-	
-	/**
-	 * @see com.jdroid.android.fragment.FragmentIf#showLoadingOnUIThread(java.lang.Boolean)
-	 */
-	@Override
-	public void showLoadingOnUIThread(Boolean cancelable) {
-		getFragmentIf().showLoadingOnUIThread(cancelable);
-	}
-	
-	/**
-	 * @see com.jdroid.android.fragment.FragmentIf#showLoadingOnUIThread(java.lang.Boolean, java.lang.Integer)
-	 */
-	@Override
-	public void showLoadingOnUIThread(Boolean cancelable, Integer loadingResId) {
-		getFragmentIf().showLoadingOnUIThread(cancelable, loadingResId);
+	public void showLoadingOnUIThread(LoadingDialogBuilder builder) {
+		getFragmentIf().showLoadingOnUIThread(builder);
 	}
 	
 	/**

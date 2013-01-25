@@ -3,6 +3,7 @@ package com.jdroid.android.activity;
 import java.util.Map;
 import roboguice.RoboGuice;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -24,9 +25,10 @@ import com.jdroid.android.ad.AdLoader;
 import com.jdroid.android.analytics.AnalyticsTracker;
 import com.jdroid.android.context.DefaultApplicationContext;
 import com.jdroid.android.context.SecurityContext;
-import com.jdroid.android.dialog.LoadingDialog;
 import com.jdroid.android.domain.User;
 import com.jdroid.android.intent.ClearTaskIntent;
+import com.jdroid.android.loading.DefaultLoadingDialogBuilder;
+import com.jdroid.android.loading.LoadingDialogBuilder;
 import com.jdroid.android.usecase.DefaultUseCase;
 import com.jdroid.android.utils.AndroidUtils;
 import com.jdroid.java.collections.Maps;
@@ -41,7 +43,7 @@ public class BaseActivity implements ActivityIf {
 	private final static String TAG = BaseActivity.class.getSimpleName();
 	
 	private Activity activity;
-	private LoadingDialog loadingDialog;
+	protected Dialog loadingDialog;
 	private BroadcastReceiver clearTaskBroadcastReceiver;
 	private Map<Key<?>, Object> scopedObjects = Maps.newHashMap();
 	
@@ -252,37 +254,7 @@ public class BaseActivity implements ActivityIf {
 	 */
 	@Override
 	public void showLoadingOnUIThread() {
-		showLoadingOnUIThread(AbstractApplication.get().isLoadingCancelable());
-	}
-	
-	/**
-	 * @see com.jdroid.android.fragment.FragmentIf#showLoadingOnUIThread(java.lang.Integer)
-	 */
-	@Override
-	public void showLoadingOnUIThread(Integer loadingResId) {
-		showLoadingOnUIThread(AbstractApplication.get().isLoadingCancelable(), loadingResId);
-	}
-	
-	/**
-	 * @see com.jdroid.android.fragment.FragmentIf#showLoadingOnUIThread(java.lang.Boolean)
-	 */
-	@Override
-	public void showLoadingOnUIThread(Boolean cancelable) {
-		showLoadingOnUIThread(cancelable, null);
-	}
-	
-	/**
-	 * @see com.jdroid.android.fragment.FragmentIf#showLoadingOnUIThread(java.lang.Boolean, java.lang.Integer)
-	 */
-	@Override
-	public void showLoadingOnUIThread(final Boolean cancelable, final Integer loadingResId) {
-		activity.runOnUiThread(new Runnable() {
-			
-			@Override
-			public void run() {
-				showLoading(cancelable, loadingResId);
-			}
-		});
+		showLoadingOnUIThread(new DefaultLoadingDialogBuilder());
 	}
 	
 	/**
@@ -290,38 +262,32 @@ public class BaseActivity implements ActivityIf {
 	 */
 	@Override
 	public void showLoading() {
-		showLoading(AbstractApplication.get().isLoadingCancelable());
+		showLoading(new DefaultLoadingDialogBuilder());
 	}
 	
 	/**
-	 * @see com.jdroid.android.fragment.FragmentIf#showLoading(java.lang.Integer)
+	 * @see com.jdroid.android.fragment.FragmentIf#showLoading(com.jdroid.android.loading.LoadingDialogBuilder)
 	 */
 	@Override
-	public void showLoading(Integer loadingResId) {
-		showLoading(AbstractApplication.get().isLoadingCancelable(), loadingResId);
-	}
-	
-	/**
-	 * @see com.jdroid.android.fragment.FragmentIf#showLoading(java.lang.Boolean)
-	 */
-	@Override
-	public void showLoading(Boolean cancelable) {
-		showLoading(cancelable, null);
-	}
-	
-	/**
-	 * @see com.jdroid.android.fragment.FragmentIf#showLoading(java.lang.Boolean, java.lang.Integer)
-	 */
-	@Override
-	public void showLoading(Boolean cancelable, Integer loadingResId) {
+	public void showLoading(LoadingDialogBuilder builder) {
 		if ((loadingDialog == null) || (!loadingDialog.isShowing())) {
-			loadingDialog = new LoadingDialog(activity);
-			loadingDialog.setCancelable(cancelable);
-			if (loadingResId != null) {
-				loadingDialog.setLoadingText(loadingResId);
-			}
+			loadingDialog = builder.build(activity);
 			loadingDialog.show();
 		}
+	}
+	
+	/**
+	 * @see com.jdroid.android.fragment.FragmentIf#showLoadingOnUIThread(com.jdroid.android.loading.LoadingDialogBuilder)
+	 */
+	@Override
+	public void showLoadingOnUIThread(final LoadingDialogBuilder builder) {
+		activity.runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				showLoading(builder);
+			}
+		});
 	}
 	
 	/**

@@ -4,8 +4,9 @@ import android.app.Activity;
 import android.view.View;
 import com.google.ads.AdSize;
 import com.jdroid.android.context.DefaultApplicationContext;
-import com.jdroid.android.dialog.LoadingDialog;
 import com.jdroid.android.domain.User;
+import com.jdroid.android.loading.LoadingDialog;
+import com.jdroid.android.loading.LoadingDialogBuilder;
 import com.jdroid.android.usecase.DefaultUseCase;
 import com.jdroid.android.usecase.listener.DefaultUseCaseListener;
 
@@ -52,53 +53,13 @@ public interface FragmentIf extends DefaultUseCaseListener {
 	public void showLoading();
 	
 	/**
-	 * Show the {@link LoadingDialog} in the current Thread. This dialog can be cancelled
-	 * 
-	 * @param loadingResId The loading resource id
-	 */
-	public void showLoading(Integer loadingResId);
-	
-	/**
-	 * Show the {@link LoadingDialog} in the current Thread
-	 * 
-	 * @param cancelable Whether the {@link LoadingDialog} can be cancelled or not
-	 */
-	public void showLoading(Boolean cancelable);
-	
-	/**
-	 * Show the {@link LoadingDialog} in the current Thread
-	 * 
-	 * @param cancelable Whether the {@link LoadingDialog} can be cancelled or not
-	 * @param loadingResId The loading resource id
-	 */
-	public void showLoading(Boolean cancelable, Integer loadingResId);
-	
-	/**
 	 * Show the {@link LoadingDialog} in the UI Thread. This dialog can be cancelled
 	 */
 	public void showLoadingOnUIThread();
 	
-	/**
-	 * Show the {@link LoadingDialog} in the UI Thread. This dialog can be cancelled
-	 * 
-	 * @param loadingResId The loading resource id
-	 */
-	public void showLoadingOnUIThread(Integer loadingResId);
+	public void showLoading(LoadingDialogBuilder builder);
 	
-	/**
-	 * Show the {@link LoadingDialog} in the UI Thread
-	 * 
-	 * @param cancelable Whether the {@link LoadingDialog} can be cancelled or not
-	 */
-	public void showLoadingOnUIThread(Boolean cancelable);
-	
-	/**
-	 * Show the {@link LoadingDialog} in the UI Thread
-	 * 
-	 * @param cancelable Whether the {@link LoadingDialog} can be cancelled or not
-	 * @param loadingResId The loading resource id
-	 */
-	public void showLoadingOnUIThread(Boolean cancelable, Integer loadingResId);
+	public void showLoadingOnUIThread(LoadingDialogBuilder builder);
 	
 	/**
 	 * Dismiss the {@link LoadingDialog} in the current Thread

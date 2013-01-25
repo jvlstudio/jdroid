@@ -12,11 +12,13 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.provider.MediaStore;
 import android.provider.Settings.Secure;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import com.jdroid.android.AbstractApplication;
 import com.jdroid.java.utils.FileUtils;
+import com.jdroid.java.utils.StringUtils;
 
 /**
  * 
@@ -156,6 +158,30 @@ public class AndroidUtils {
 		return !isGoogleTV();
 	}
 	
+	public static Boolean isSmallScreen() {
+		int screenSize = AbstractApplication.get().getResources().getConfiguration().screenLayout
+				& Configuration.SCREENLAYOUT_SIZE_MASK;
+		return screenSize == Configuration.SCREENLAYOUT_SIZE_SMALL;
+	}
+	
+	public static Boolean isNormalScreen() {
+		int screenSize = AbstractApplication.get().getResources().getConfiguration().screenLayout
+				& Configuration.SCREENLAYOUT_SIZE_MASK;
+		return screenSize == Configuration.SCREENLAYOUT_SIZE_NORMAL;
+	}
+	
+	public static Boolean isLargeScreen() {
+		int screenSize = AbstractApplication.get().getResources().getConfiguration().screenLayout
+				& Configuration.SCREENLAYOUT_SIZE_MASK;
+		return screenSize == Configuration.SCREENLAYOUT_SIZE_LARGE;
+	}
+	
+	public static Boolean isXLargeScreen() {
+		int screenSize = AbstractApplication.get().getResources().getConfiguration().screenLayout
+				& Configuration.SCREENLAYOUT_SIZE_MASK;
+		return screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE;
+	}
+	
 	public static Boolean isLargeScreenOrBigger() {
 		int screenSize = AbstractApplication.get().getResources().getConfiguration().screenLayout
 				& Configuration.SCREENLAYOUT_SIZE_MASK;
@@ -169,6 +195,66 @@ public class AndroidUtils {
 		return (screenSize != Configuration.SCREENLAYOUT_SIZE_SMALL)
 				&& (screenSize != Configuration.SCREENLAYOUT_SIZE_NORMAL)
 				&& (screenSize != Configuration.SCREENLAYOUT_SIZE_LARGE);
+	}
+	
+	public static String getScreenSize() {
+		String screenSize = StringUtils.EMPTY;
+		if (AndroidUtils.isSmallScreen()) {
+			screenSize = "small";
+		} else if (AndroidUtils.isNormalScreen()) {
+			screenSize = "normal";
+		} else if (AndroidUtils.isLargeScreen()) {
+			screenSize = "large";
+		} else if (AndroidUtils.isXLargeScreen()) {
+			screenSize = "xlarge";
+		}
+		return screenSize;
+	}
+	
+	public static Boolean isLdpiDensity() {
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		return metrics.densityDpi == DisplayMetrics.DENSITY_LOW;
+	}
+	
+	public static Boolean isMdpiDensity() {
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		return metrics.densityDpi == DisplayMetrics.DENSITY_MEDIUM;
+	}
+	
+	public static Boolean isHdpiDensity() {
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		return metrics.densityDpi == DisplayMetrics.DENSITY_HIGH;
+	}
+	
+	public static Boolean isXhdpiDensity() {
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		return metrics.densityDpi == DisplayMetrics.DENSITY_XHIGH;
+	}
+	
+	public static Boolean isTVdpiDensity() {
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		return metrics.densityDpi == DisplayMetrics.DENSITY_TV;
+	}
+	
+	public static String getScreenDensity() {
+		String density = StringUtils.EMPTY;
+		if (AndroidUtils.isLdpiDensity()) {
+			density = "ldpi";
+		} else if (AndroidUtils.isMdpiDensity()) {
+			density = "mdpi";
+		} else if (AndroidUtils.isHdpiDensity()) {
+			density = "hdpi";
+		} else if (AndroidUtils.isXhdpiDensity()) {
+			density = "xhdpi";
+		} else if (AndroidUtils.isTVdpiDensity()) {
+			density = "tvdpi";
+		}
+		return density;
 	}
 	
 	public static Boolean supportsContextualActionBar() {
