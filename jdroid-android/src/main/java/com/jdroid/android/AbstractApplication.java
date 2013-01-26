@@ -4,9 +4,12 @@ import java.io.File;
 import java.util.UUID;
 import roboguice.RoboGuice;
 import roboguice.application.RoboApplication;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.os.Build;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -21,6 +24,7 @@ import com.jdroid.android.exception.ExceptionHandler;
 import com.jdroid.android.fragment.BaseFragment;
 import com.jdroid.android.images.BitmapLruCache;
 import com.jdroid.android.utils.AlertDialogUtils;
+import com.jdroid.android.utils.AndroidUtils;
 import com.jdroid.android.utils.SharedPreferencesUtils;
 import com.jdroid.android.utils.ToastUtils;
 import com.jdroid.java.exception.UnexpectedException;
@@ -82,6 +86,7 @@ public abstract class AbstractApplication extends RoboApplication {
 		if (applicationContext.displayDebugSettings()) {
 			PreferenceManager.setDefaultValues(this, R.xml.debug_preferences, false);
 		}
+		initStrictMode();
 		
 		// This is required to initialize the statics fields of the utils classes.
 		AlertDialogUtils.init();
@@ -113,6 +118,18 @@ public abstract class AbstractApplication extends RoboApplication {
 		
 		if (level >= TRIM_MEMORY_MODERATE) {
 			bitmapLruCache.evictAll();
+		}
+	}
+	
+	public Boolean isStrictModeEnabled() {
+		return true;
+	}
+	
+	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
+	private void initStrictMode() {
+		if (!applicationContext.isProductionEnvironment() && isStrictModeEnabled()
+				&& (AndroidUtils.getApiLevel() >= Build.VERSION_CODES.GINGERBREAD)) {
+			StrictMode.enableDefaults();
 		}
 	}
 	
