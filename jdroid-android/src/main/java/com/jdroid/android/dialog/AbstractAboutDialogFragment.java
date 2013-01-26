@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.jdroid.android.R;
 import com.jdroid.android.utils.AndroidUtils;
-import com.jdroid.java.context.GitContext;
 import com.jdroid.java.http.MimeType;
 import com.jdroid.java.utils.DateUtils;
 
@@ -50,27 +49,6 @@ public abstract class AbstractAboutDialogFragment extends AbstractDialogFragment
 		
 		TextView version = (TextView)view.findViewById(R.id.version);
 		version.setText(getString(R.string.version, AndroidUtils.getVersionName()));
-		
-		TextView commitId = (TextView)view.findViewById(R.id.commitId);
-		if (GitContext.get().getCommitId() != null) {
-			commitId.setText(getString(R.string.commitId, GitContext.get().getCommitId()));
-		} else {
-			commitId.setVisibility(View.GONE);
-		}
-		
-		TextView commitTime = (TextView)view.findViewById(R.id.commitTime);
-		if (GitContext.get().getCommitTime() != null) {
-			commitTime.setText(getString(R.string.commitTime, GitContext.get().getCommitTime()));
-		} else {
-			commitTime.setVisibility(View.GONE);
-		}
-		
-		TextView buildTime = (TextView)view.findViewById(R.id.buildTime);
-		if (GitContext.get().getBuildTime() != null) {
-			buildTime.setText(getString(R.string.buildTime, GitContext.get().getBuildTime()));
-		} else {
-			buildTime.setVisibility(View.GONE);
-		}
 		
 		TextView contactUsLabel = (TextView)view.findViewById(R.id.contactUsLabel);
 		TextView contactUsEmail = (TextView)view.findViewById(R.id.contactUsEmail);

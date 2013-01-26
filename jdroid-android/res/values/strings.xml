@@ -64,9 +64,6 @@
 	<!-- About Dialog -->
 	<string name="about">About</string>
 	<string name="version">Version %1$s</string>
-	<string name="commitId">Commit Id: %1$s</string>
-	<string name="commitTime">Commit Time: %1$s</string>
-	<string name="buildTime">Build Time: %1$s</string>
 	<string name="contactUs">Contact Us</string>
 	<string name="termsOfService">Terms of Service</string>
 	<string name="privacy">Privacy</string>
@@ -101,5 +98,13 @@
 	<string name="httpMockEnabledDescription">Enable/disable http mocks</string>
 	<string name="httpMockSleepTitle">Http Mocks sleep</string>
 	<string name="httpMockSleepDescription">Enable/disable http mocks sleep</string>
+	<string name="packageName">Package Name: %1$s</string>
+	<string name="environmentName">Environment Name: %1$s</string>
+	<string name="analyticsEnabled">Analytics Enabled: %1$s</string>
+	<string name="screenSize">Screen Size: %1$s</string>
+	<string name="screenDensity">Screen Density: %1$s</string>
+	<string name="commitId">Commit Id: %1$s</string>
+	<string name="commitTime">Commit Time: %1$s</string>
+	<string name="buildTime">Build Time: %1$s</string>
 
 </resources>

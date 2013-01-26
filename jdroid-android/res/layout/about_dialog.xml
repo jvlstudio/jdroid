@@ -25,13 +25,6 @@
 		<TextView android:id="@+id/contactUsEmail" style="@style/wrapContentElement" android:textSize="@dimen/aboutDialogTextSize"
 			android:textColor="@color/black" />
 
-		<TextView style="@style/wrapContentElement" android:id="@+id/commitId" android:text="@string/commitId"
-			android:textColor="@color/black" android:textSize="@dimen/aboutDialogTextSize" android:layout_marginTop="10dp" />
-		<TextView style="@style/wrapContentElement" android:id="@+id/commitTime" android:text="@string/commitTime"
-			android:textColor="@color/black" android:textSize="@dimen/aboutDialogTextSize" />
-		<TextView style="@style/wrapContentElement" android:id="@+id/buildTime" android:text="@string/buildTime"
-			android:textColor="@color/black" android:textSize="@dimen/aboutDialogTextSize" />
-
 		<TextView style="@style/wrapContentElement" android:id="@+id/copyright" android:textColor="@color/black"
 			android:textSize="@dimen/aboutDialogTextSize" android:layout_marginTop="10dp" android:text="@string/copyright" />
 		<TextView style="@style/wrapContentElement" android:id="@+id/allRightsReservedLegend" android:textColor="@color/black"

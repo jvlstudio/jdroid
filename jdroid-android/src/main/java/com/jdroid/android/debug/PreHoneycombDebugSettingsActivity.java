@@ -2,10 +2,8 @@ package com.jdroid.android.debug;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 import com.jdroid.android.R;
 import com.jdroid.android.activity.AbstractPreferenceActivity;
-import com.jdroid.android.utils.AndroidUtils;
 
 /**
  * 
@@ -22,12 +20,9 @@ public class PreHoneycombDebugSettingsActivity extends AbstractPreferenceActivit
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.debug_preferences);
 		
-		View header = inflate(R.layout.device_info_header);
-		((TextView)header.findViewById(R.id.screenSize)).setText("Screen Size: " + AndroidUtils.getScreenSize());
-		((TextView)header.findViewById(R.id.screenDensity)).setText("Screen Density: "
-				+ AndroidUtils.getScreenDensity());
+		View debugInfoView = DebugSettingsFragment.inflateDebugInfoView(this);
 		
-		getListView().addFooterView(header);
+		getListView().addFooterView(debugInfoView);
 	}
 	
 	/**

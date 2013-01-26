@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+	android:layout_height="wrap_content" android:paddingLeft="10dp" android:paddingTop="10dp" android:paddingBottom="10dp"
+	android:orientation="vertical">
+
+	<TextView android:id="@+id/packageName" android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:text="@string/packageName" />
+	<TextView android:id="@+id/environmentName" android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:text="@string/environmentName" />
+	<TextView android:id="@+id/analyticsEnabled" android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:text="@string/analyticsEnabled" />
+	<TextView android:id="@+id/screenDensity" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+	<TextView android:id="@+id/screenSize" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+	<TextView android:id="@+id/commitId" android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:text="@string/commitId" />
+	<TextView android:id="@+id/commitTime" android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:text="@string/commitTime" />
+	<TextView android:id="@+id/buildTime" android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:text="@string/buildTime" />
+
+</LinearLayout>
