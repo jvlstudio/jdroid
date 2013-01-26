@@ -7,6 +7,7 @@ import roboguice.application.RoboApplication;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import com.google.android.gcm.GCMRegistrar;
@@ -77,6 +78,10 @@ public abstract class AbstractApplication extends RoboApplication {
 		loadInstallationId();
 		
 		applicationContext = createApplicationContext();
+		
+		if (applicationContext.displayDebugSettings()) {
+			PreferenceManager.setDefaultValues(this, R.xml.debug_preferences, false);
+		}
 		
 		// This is required to initialize the statics fields of the utils classes.
 		AlertDialogUtils.init();

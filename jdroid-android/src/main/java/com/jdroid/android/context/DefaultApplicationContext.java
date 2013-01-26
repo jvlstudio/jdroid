@@ -1,6 +1,8 @@
 package com.jdroid.android.context;
 
 import java.util.Set;
+import android.preference.PreferenceManager;
+import com.jdroid.android.AbstractApplication;
 import com.jdroid.java.utils.PropertiesUtils;
 
 /**
@@ -15,7 +17,7 @@ public class DefaultApplicationContext {
 	private String environmentName;
 	private String googleProjectId;
 	private String facebookAppId;
-	private Boolean devSettings;
+	private Boolean debugSettings;
 	private Boolean isFreeApp;
 	private Boolean adsEnabled;
 	private String adUnitId;
@@ -31,7 +33,7 @@ public class DefaultApplicationContext {
 		environmentName = PropertiesUtils.getStringProperty("environment.name");
 		googleProjectId = PropertiesUtils.getStringProperty("google.projectId");
 		facebookAppId = PropertiesUtils.getStringProperty("facebook.app.id");
-		devSettings = PropertiesUtils.getBooleanProperty("dev.settings");
+		debugSettings = PropertiesUtils.getBooleanProperty("debug.settings");
 		isFreeApp = PropertiesUtils.getBooleanProperty("free.app");
 		adsEnabled = PropertiesUtils.getBooleanProperty("ads.enabled", false);
 		adUnitId = PropertiesUtils.getStringProperty("ads.adUnitId");
@@ -55,10 +57,10 @@ public class DefaultApplicationContext {
 	}
 	
 	/**
-	 * @return Whether the application should display the development settings
+	 * @return Whether the application should display the debug settings
 	 */
-	public Boolean displayDevSettings() {
-		return devSettings;
+	public Boolean displayDebugSettings() {
+		return debugSettings;
 	}
 	
 	public String getEnvironmentName() {
@@ -116,5 +118,16 @@ public class DefaultApplicationContext {
 	 */
 	public String getAnalyticsTrackingId() {
 		return analyticsTrackingId;
+	}
+	
+	public Boolean isHttpMockEnabled() {
+		return !isProductionEnvironment()
+				&& PreferenceManager.getDefaultSharedPreferences(AbstractApplication.get()).getBoolean(
+					"httpMockEnabled", false);
+	}
+	
+	public Integer getHttpMockSleepDuration() {
+		return PreferenceManager.getDefaultSharedPreferences(AbstractApplication.get()).getBoolean("httpMockSleep",
+			false) ? 10 : null;
 	}
 }

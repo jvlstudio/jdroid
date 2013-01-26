@@ -25,6 +25,8 @@ import com.jdroid.android.ad.AdLoader;
 import com.jdroid.android.analytics.AnalyticsTracker;
 import com.jdroid.android.context.DefaultApplicationContext;
 import com.jdroid.android.context.SecurityContext;
+import com.jdroid.android.debug.DebugSettingsActivity;
+import com.jdroid.android.debug.PreHoneycombDebugSettingsActivity;
 import com.jdroid.android.domain.User;
 import com.jdroid.android.intent.ClearTaskIntent;
 import com.jdroid.android.loading.DefaultLoadingDialogBuilder;
@@ -218,7 +220,12 @@ public class BaseActivity implements ActivityIf {
 	 */
 	@Override
 	public void doOnCreateOptionsMenu(Menu menu) {
-		// Do Nothing by Default
+		if (!getAndroidApplicationContext().displayDebugSettings()) {
+			MenuItem menuItem = menu.findItem(R.id.debugSettingsItem);
+			if (menuItem != null) {
+				menuItem.setVisible(false);
+			}
+		}
 	}
 	
 	/**
@@ -230,23 +237,37 @@ public class BaseActivity implements ActivityIf {
 	}
 	
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case android.R.id.home:
-				ActivityLauncher.launchHomeActivity();
-				return true;
-			default:
-				return false;
+		if (item.getItemId() == android.R.id.home) {
+			ActivityLauncher.launchHomeActivity();
+			return true;
+		} else if (item.getItemId() == R.id.debugSettingsItem) {
+			Class<? extends Activity> targetActivity;
+			if (AndroidUtils.isPreHoneycomb()) {
+				targetActivity = PreHoneycombDebugSettingsActivity.class;
+			} else {
+				targetActivity = DebugSettingsActivity.class;
+			}
+			ActivityLauncher.launchActivity(targetActivity);
+			return true;
 		}
+		return false;
 	}
 	
 	public boolean onOptionsItemSelected(android.view.MenuItem item) {
-		switch (item.getItemId()) {
-			case android.R.id.home:
-				ActivityLauncher.launchHomeActivity();
-				return true;
-			default:
-				return false;
+		if (item.getItemId() == android.R.id.home) {
+			ActivityLauncher.launchHomeActivity();
+			return true;
+		} else if (item.getItemId() == R.id.debugSettingsItem) {
+			Class<? extends Activity> targetActivity;
+			if (AndroidUtils.isPreHoneycomb()) {
+				targetActivity = PreHoneycombDebugSettingsActivity.class;
+			} else {
+				targetActivity = DebugSettingsActivity.class;
+			}
+			ActivityLauncher.launchActivity(targetActivity);
+			return true;
 		}
+		return false;
 	}
 	
 	/**

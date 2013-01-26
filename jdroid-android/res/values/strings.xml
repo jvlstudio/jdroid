@@ -91,4 +91,15 @@
 	<string name="twitterNoAuth">Twitter was no authorized</string>
 	<string name="twitterError">Error connecting with Twitter</string>
 
+	<!-- Settings Activity -->
+	<string name="settings">Settings</string>
+
+	<!-- Debug Settings Activity -->
+	<string name="debugSettings">Debug Settings</string>
+	<string name="httpMocks">HTTP Mocks</string>
+	<string name="httpMockEnabledTitle">Http Mocks</string>
+	<string name="httpMockEnabledDescription">Enable/disable http mocks</string>
+	<string name="httpMockSleepTitle">Http Mocks sleep</string>
+	<string name="httpMockSleepDescription">Enable/disable http mocks sleep</string>
+
 </resources>
