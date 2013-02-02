@@ -25,7 +25,12 @@ public class TimePickerDialogFragment extends AbstractDialogFragment {
 	
 	public static void show(Fragment targetFragment, Date defaultTime) {
 		FragmentManager fm = targetFragment.getActivity().getSupportFragmentManager();
-		TimePickerDialogFragment fragment = new TimePickerDialogFragment(defaultTime);
+		TimePickerDialogFragment fragment = new TimePickerDialogFragment();
+		
+		Bundle bundle = new Bundle();
+		bundle.putSerializable(DEFAULT_TIME_EXTRA, defaultTime);
+		fragment.setArguments(bundle);
+		
 		fragment.setTargetFragment(targetFragment, 1);
 		fragment.show(fm, TimePickerDialogFragment.class.getSimpleName());
 	}
@@ -36,17 +41,6 @@ public class TimePickerDialogFragment extends AbstractDialogFragment {
 	public interface OnTimeSetListener {
 		
 		public void onTimeSet(Date time);
-	}
-	
-	public TimePickerDialogFragment() {
-	}
-	
-	public TimePickerDialogFragment(Date defaultTime) {
-		this.defaultTime = defaultTime;
-		
-		Bundle bundle = new Bundle();
-		bundle.putSerializable(DEFAULT_TIME_EXTRA, defaultTime);
-		setArguments(bundle);
 	}
 	
 	/**

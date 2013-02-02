@@ -140,10 +140,12 @@ public abstract class AbstractApplication extends RoboApplication {
 			// TODO We could listen the Intent.ACTION_DEVICE_STORAGE_LOW and clear the cache
 			cacheDirectory = getCacheDir();
 		}
+		Log.d(TAG, "Cache directory: " + cacheDirectory.getPath());
 	}
 	
 	private void initImagesCacheDirectory() {
 		imagesCacheDirectory = new File(getCacheDirectory(), IMAGES_DIRECTORY);
+		Log.d(TAG, "Images cache directory: " + imagesCacheDirectory.getPath());
 		ExecutorUtils.execute(new Runnable() {
 			
 			@Override

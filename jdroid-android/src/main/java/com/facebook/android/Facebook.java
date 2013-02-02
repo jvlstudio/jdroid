@@ -294,8 +294,8 @@ public class Facebook {
 				setAccessToken(values.getString(TOKEN));
 				setAccessExpiresIn(values.getString(EXPIRES));
 				if (isSessionValid()) {
-					Util.logd("Facebook-authorize", "Login Success! access_token=" + getAccessToken() + " expires="
-							+ getAccessExpires());
+					Util.logd("Facebook-authorize", "Login Success! access_token=" + mAccessToken + " expires="
+							+ mAccessExpires);
 					mAuthDialogListener.onComplete(values);
 				} else {
 					mAuthDialogListener.onFacebookError(new FacebookError("Failed to receive access token."));
@@ -370,8 +370,8 @@ public class Facebook {
 					setAccessToken(data.getStringExtra(TOKEN));
 					setAccessExpiresIn(data.getStringExtra(EXPIRES));
 					if (isSessionValid()) {
-						Util.logd("Facebook-authorize", "Login Success! access_token=" + getAccessToken() + " expires="
-								+ getAccessExpires());
+						Util.logd("Facebook-authorize", "Login Success! access_token=" + mAccessToken + " expires="
+								+ mAccessExpires);
 						mAuthDialogListener.onComplete(data.getExtras());
 					} else {
 						mAuthDialogListener.onFacebookError(new FacebookError("Failed to receive access token."));
@@ -639,7 +639,7 @@ public class Facebook {
 			MalformedURLException, IOException {
 		params.putString("format", "json");
 		if (isSessionValid()) {
-			params.putString(TOKEN, getAccessToken());
+			params.putString(TOKEN, mAccessToken);
 		}
 		String url = (graphPath != null) ? GRAPH_BASE_URL + graphPath : RESTSERVER_URL;
 		return Util.openUrl(url, httpMethod, params);
@@ -684,7 +684,7 @@ public class Facebook {
 		}
 		
 		if (isSessionValid()) {
-			parameters.putString(TOKEN, getAccessToken());
+			parameters.putString(TOKEN, mAccessToken);
 		}
 		String url = endpoint + "?" + Util.encodeUrl(parameters);
 		if (context.checkCallingOrSelfPermission(Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
@@ -698,8 +698,7 @@ public class Facebook {
 	 * @return boolean - whether this object has an non-expired session token
 	 */
 	public boolean isSessionValid() {
-		return (getAccessToken() != null)
-				&& ((getAccessExpires() == 0) || (System.currentTimeMillis() < getAccessExpires()));
+		return (mAccessToken != null) && ((mAccessExpires == 0) || (System.currentTimeMillis() < mAccessExpires));
 	}
 	
 	/**

@@ -59,6 +59,7 @@
     <issue id="SdCardPath" severity="ignore" />
     <issue id="SetJavaScriptEnabled" severity="ignore" />
     <issue id="ShowToast" severity="ignore" />
+    <issue id="SpUsage" severity="ignore" />
     <issue id="StateListReachable" severity="ignore" />
     <issue id="StringFormatCount" severity="ignore" />
     <issue id="StringFormatInvalid" severity="ignore" />

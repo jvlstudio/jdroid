@@ -1,11 +1,11 @@
 package com.jdroid.android.utils;
 
+import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.LayoutAnimationController;
 import android.view.animation.TranslateAnimation;
-import android.widget.ListView;
 
 public final class AnimationUtils {
 	
@@ -16,10 +16,7 @@ public final class AnimationUtils {
 		// Do nothing...
 	}
 	
-	/**
-	 * @param listView
-	 */
-	public static void makeListAnimation(ListView listView) {
+	public static void makeViewGroupAnimation(ViewGroup viewGroup) {
 		AnimationSet set = new AnimationSet(true);
 		
 		Animation animation = new AlphaAnimation(0.0f, 1.0f);
@@ -32,6 +29,6 @@ public final class AnimationUtils {
 		set.addAnimation(animation);
 		
 		LayoutAnimationController controller = new LayoutAnimationController(set, 0.5f);
-		listView.setLayoutAnimation(controller);
+		viewGroup.setLayoutAnimation(controller);
 	}
 }

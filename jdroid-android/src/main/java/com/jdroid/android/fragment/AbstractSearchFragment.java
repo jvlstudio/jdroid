@@ -32,7 +32,6 @@ public abstract class AbstractSearchFragment<T> extends AbstractListFragment<T> 
 	private EditText searchText;
 	private View searchButton;
 	private View cancelButton;
-	private TextView emptyLegend;
 	
 	/**
 	 * @see android.support.v4.app.ListFragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup,
@@ -53,6 +52,7 @@ public abstract class AbstractSearchFragment<T> extends AbstractListFragment<T> 
 		getListView().getEmptyView().setVisibility(View.GONE);
 		
 		searchText = findView(R.id.searchText);
+		searchText.setHint(getSearchEditTextHintResId());
 		searchText.requestFocus();
 		if (isInstantSearchEnabled()) {
 			searchText.addTextChangedListener(getTextWatcher());
@@ -92,8 +92,9 @@ public abstract class AbstractSearchFragment<T> extends AbstractListFragment<T> 
 			cancelButton.setVisibility(View.GONE);
 		}
 		
-		emptyLegend = findView(android.R.id.empty);
+		TextView emptyLegend = findView(android.R.id.empty);
 		emptyLegend.setText(getNoResultsResId());
+		emptyLegend.setVisibility(View.GONE);
 		
 		setListAdapter(createBaseArrayAdapter());
 	}
@@ -138,6 +139,10 @@ public abstract class AbstractSearchFragment<T> extends AbstractListFragment<T> 
 	
 	protected int getNoResultsResId() {
 		return R.string.noResultsSearch;
+	}
+	
+	protected int getSearchEditTextHintResId() {
+		return R.string.typeHere;
 	}
 	
 	protected UseCaseTrigger getUseCaseTrigger() {

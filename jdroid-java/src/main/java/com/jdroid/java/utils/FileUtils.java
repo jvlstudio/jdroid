@@ -64,6 +64,7 @@ public abstract class FileUtils {
 	 * @return A byte array with all the file's information
 	 * @throws IOException The exception thrown when an error reading the file happens
 	 */
+	@SuppressWarnings("resource")
 	public static byte[] readAsBytes(File file) throws IOException {
 		return readAsBytes(new FileInputStream(file));
 	}

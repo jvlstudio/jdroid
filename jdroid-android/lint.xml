@@ -5,6 +5,9 @@
         <ignore path="src\main\java\com\facebook\android\Facebook.java" />
     </issue>
     <issue id="IconExpectedSize" severity="warning" />
+    <issue id="Registered">
+        <ignore path="src\main\java\com\jdroid\android\exception\ExceptionReportActivity.java" />
+    </issue>
     <issue id="SetJavaScriptEnabled">
         <ignore path="src\main\java\com\facebook\android\FbDialog.java" />
     </issue>

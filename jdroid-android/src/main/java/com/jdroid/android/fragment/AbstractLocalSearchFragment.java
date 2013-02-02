@@ -20,9 +20,6 @@ import com.jdroid.android.listener.FilterListTextWatcher;
  */
 public abstract class AbstractLocalSearchFragment<T> extends AbstractListFragment<T> {
 	
-	private EditText searchText;
-	private TextView emptyLegend;
-	
 	/**
 	 * @see com.jdroid.android.fragment.AbstractListFragment#onViewCreated(android.view.View, android.os.Bundle)
 	 */
@@ -32,11 +29,11 @@ public abstract class AbstractLocalSearchFragment<T> extends AbstractListFragmen
 		
 		getListView().getEmptyView().setVisibility(View.GONE);
 		
-		searchText = findView(R.id.searchText);
+		EditText searchText = findView(R.id.searchText);
 		searchText.requestFocus();
 		searchText.addTextChangedListener(getTextWatcher());
 		
-		emptyLegend = findView(android.R.id.empty);
+		TextView emptyLegend = findView(android.R.id.empty);
 		emptyLegend.setText(getNoResultsResId());
 		
 		setListAdapter(createBaseArrayAdapter());

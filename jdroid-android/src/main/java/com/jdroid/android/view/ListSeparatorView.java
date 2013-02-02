@@ -20,7 +20,7 @@ public class ListSeparatorView extends TextView {
 		setTextColor(Color.WHITE);
 		setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.listSeparatorTextSize));
 		setTypeface(Typeface.DEFAULT_BOLD);
-		setBackgroundDrawable(getResources().getDrawable(R.drawable.list_separator_background));
+		setBackgroundResource(R.drawable.list_separator_background);
 		setPadding(20, 3, 20, 3);
 	}
 	
