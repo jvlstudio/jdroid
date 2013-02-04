@@ -24,8 +24,9 @@ public abstract class LoadingDialogBuilder {
 		return cancelable;
 	}
 	
-	public void setLoadingResId(int loadingResId) {
+	public LoadingDialogBuilder setLoadingResId(int loadingResId) {
 		this.loadingResId = loadingResId;
+		return this;
 	}
 	
 	public Integer getLoadingResId() {
