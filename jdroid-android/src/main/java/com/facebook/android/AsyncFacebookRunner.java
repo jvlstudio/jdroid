@@ -301,6 +301,8 @@ public class AsyncFacebookRunner {
          * Called when a request completes with the given response.
          *
          * Executed by a background thread: do not update the UI in this method.
+         * @param response 
+         * @param state 
          */
         public void onComplete(String response, Object state);
 
@@ -308,6 +310,8 @@ public class AsyncFacebookRunner {
          * Called when a request has a network or request error.
          *
          * Executed by a background thread: do not update the UI in this method.
+         * @param e 
+         * @param state 
          */
         public void onIOException(IOException e, Object state);
 
@@ -316,6 +320,8 @@ public class AsyncFacebookRunner {
          * invalid or does not exist.
          *
          * Executed by a background thread: do not update the UI in this method.
+         * @param e 
+         * @param state 
          */
         public void onFileNotFoundException(FileNotFoundException e,
                                             Object state);
@@ -325,6 +331,8 @@ public class AsyncFacebookRunner {
          * malformed URL).
          *
          * Executed by a background thread: do not update the UI in this method.
+         * @param e 
+         * @param state 
          */
         public void onMalformedURLException(MalformedURLException e,
                                             Object state);
@@ -333,6 +341,8 @@ public class AsyncFacebookRunner {
          * Called when the server-side Facebook method fails.
          *
          * Executed by a background thread: do not update the UI in this method.
+         * @param e 
+         * @param state 
          */
         public void onFacebookError(FacebookError e, Object state);
 

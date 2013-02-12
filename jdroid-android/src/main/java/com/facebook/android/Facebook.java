@@ -130,6 +130,8 @@ public class Facebook {
      * See authorize() below for @params.
      * <p/>
      * This method is deprecated.  See {@link Facebook} and {@link Session} for more info.
+     * @param activity 
+     * @param listener 
      */
     @Deprecated
     public void authorize(Activity activity, final DialogListener listener) {
@@ -143,6 +145,9 @@ public class Facebook {
      * See authorize() below for @params.
      * <p/>
      * This method is deprecated.  See {@link Facebook} and {@link Session} for more info.
+     * @param activity 
+     * @param permissions 
+     * @param listener 
      */
     @Deprecated
     public void authorize(Activity activity, String[] permissions, final DialogListener listener) {
@@ -418,6 +423,9 @@ public class Facebook {
      * Activity.html#onActivityResult(int, int, android.content.Intent)
      * <p/>
      * This method is deprecated.  See {@link Facebook} and {@link Session} for more info.
+     * @param requestCode 
+     * @param resultCode 
+     * @param data 
      */
     @Deprecated
     public void authorizeCallback(int requestCode, int resultCode, Intent data) {
@@ -475,6 +483,8 @@ public class Facebook {
      * Calls extendAccessToken if shouldExtendAccessToken returns true.
      * <p/>
      * This method is deprecated.  See {@link Facebook} and {@link Session} for more info.
+     * @param context 
+     * @param serviceListener 
      *
      * @return the same value as extendAccessToken if the the token requires
      *         refreshing, true otherwise
@@ -787,6 +797,7 @@ public class Facebook {
      * @throws IOException
      * @throws MalformedURLException
      * @return JSON string representation of the response
+     * @throws FileNotFoundException 
      */
     @Deprecated
     public String request(String graphPath, Bundle params, String httpMethod) throws FileNotFoundException,
@@ -1272,6 +1283,7 @@ public class Facebook {
          * Called when a Facebook responds to a dialog with an error.
          * 
          * Executed by the thread that initiated the dialog.
+         * @param e 
          * 
          */
         public void onFacebookError(FacebookError e);
@@ -1280,6 +1292,7 @@ public class Facebook {
          * Called when a dialog has an error.
          * 
          * Executed by the thread that initiated the dialog.
+         * @param e 
          * 
          */
         public void onError(DialogError e);
@@ -1321,11 +1334,13 @@ public class Facebook {
 
         /**
          * Called when a Facebook server responds to the request with an error.
+         * @param e 
          */
         public void onFacebookError(FacebookError e);
 
         /**
          * Called when a Facebook Service responds to the request with an error.
+         * @param e 
          */
         public void onError(Error e);
 

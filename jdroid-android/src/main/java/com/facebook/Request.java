@@ -315,6 +315,7 @@ public class Request {
      * @param file     the file containing the photo to upload
      * @param callback a callback that will be called when the request is completed to handle success or error conditions
      * @return a Request that is ready to execute
+     * @throws FileNotFoundException 
      */
     public static Request newUploadPhotoRequest(Session session, File file,
             Callback callback) throws FileNotFoundException {
@@ -333,6 +334,7 @@ public class Request {
      * @param file     the file to upload
      * @param callback a callback that will be called when the request is completed to handle success or error conditions
      * @return a Request that is ready to execute
+     * @throws FileNotFoundException 
      */
     public static Request newUploadVideoRequest(Session session, File file,
             Callback callback) throws FileNotFoundException {
@@ -756,6 +758,7 @@ public class Request {
      * @param file     the file containing the photo to upload
      * @param callback a callback that will be called when the request is completed to handle success or error conditions
      * @return a RequestAsyncTask that is executing the request
+     * @throws FileNotFoundException 
      */
     public static RequestAsyncTask executeUploadPhotoRequestAsync(Session session, File file,
             Callback callback) throws FileNotFoundException {
@@ -1235,7 +1238,8 @@ public class Request {
 
         if (callbacks.size() > 0) {
             Runnable runnable = new Runnable() {
-                public void run() {
+                @Override
+				public void run() {
                     for (Pair<Callback, Response> pair : callbacks) {
                         pair.first.onCompleted(pair.second);
                     }
@@ -1673,7 +1677,8 @@ public class Request {
             }
         }
 
-        public void writeString(String key, String value) throws IOException {
+        @Override
+		public void writeString(String key, String value) throws IOException {
             writeContentDisposition(key, null, null);
             writeLine("%s", value);
             writeRecordBoundary();

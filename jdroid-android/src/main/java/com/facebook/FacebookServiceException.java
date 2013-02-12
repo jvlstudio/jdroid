@@ -29,6 +29,7 @@ public class FacebookServiceException extends FacebookException {
      * Constructs a new FacebookServiceException.
      *
      * @param error the error from the request
+     * @param errorMessage 
      */
     public FacebookServiceException(FacebookRequestError error, String errorMessage) {
         super(errorMessage);

@@ -16,6 +16,7 @@
 
 package com.facebook.internal;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import com.facebook.LoggingBehavior;
@@ -240,7 +241,8 @@ public final class FileLruCache {
         return new CopyingInputStream(input, output);
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "{FileLruCache:" + " tag:" + this.tag + " file:" + this.directory.getName() + "}";
     }
 
@@ -581,7 +583,8 @@ public final class FileLruCache {
             return modified;
         }
 
-        @Override
+        @SuppressLint("FieldGetter")
+		@Override
         public int compareTo(ModifiedFile another) {
             if (getModified() < another.getModified()) {
                 return -1;

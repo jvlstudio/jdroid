@@ -20,12 +20,16 @@ package com.facebook;
  * Represents an error condition relating to displaying a Facebook Web dialog.
  */
 public class FacebookDialogException extends FacebookException {
-    static final long serialVersionUID = 1;
+    @SuppressWarnings("hiding")
+	static final long serialVersionUID = 1;
     private int errorCode;
     private String failingUrl;
 
     /**
      * Constructs a new FacebookException.
+     * @param message 
+     * @param errorCode 
+     * @param failingUrl 
      */
     public FacebookDialogException(String message, int errorCode, String failingUrl) {
         super(message);

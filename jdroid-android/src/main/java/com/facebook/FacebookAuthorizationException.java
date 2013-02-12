@@ -20,7 +20,8 @@ package com.facebook;
  * An Exception indicating that a Session failed to open or obtain new permissions.
  */
 public class FacebookAuthorizationException extends FacebookException {
-    static final long serialVersionUID = 1;
+    @SuppressWarnings("hiding")
+	static final long serialVersionUID = 1;
 
     /**
      * Constructs a FacebookAuthorizationException with no additional

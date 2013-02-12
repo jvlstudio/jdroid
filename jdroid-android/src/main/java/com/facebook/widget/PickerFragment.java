@@ -58,6 +58,7 @@ import com.jdroid.android.R;
  * (for certain properties) by specifying attributes in their XML layout files. <br/>
  * PickerFragments support callbacks that will be called in the event of an error, when the underlying data has been
  * changed, or when the set of selected graph objects changes.
+ * @param <T> 
  */
 public abstract class PickerFragment<T extends GraphObject> extends Fragment {
 	
@@ -606,6 +607,7 @@ public abstract class PickerFragment<T extends GraphObject> extends Fragment {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void inflateTitleBar(ViewGroup view) {
 		ViewStub stub = (ViewStub)view.findViewById(R.id.com_facebook_picker_title_bar_stub);
 		if (stub != null) {
@@ -758,6 +760,7 @@ public abstract class PickerFragment<T extends GraphObject> extends Fragment {
 		
 		/**
 		 * Called when a network or other error is encountered.
+		 * @param fragment 
 		 * 
 		 * @param error a FacebookException representing the error that was encountered.
 		 */
@@ -771,6 +774,7 @@ public abstract class PickerFragment<T extends GraphObject> extends Fragment {
 		
 		/**
 		 * Called when the set of data being displayed in the picker has changed.
+		 * @param fragment 
 		 */
 		void onDataChanged(PickerFragment<?> fragment);
 	}
@@ -782,6 +786,7 @@ public abstract class PickerFragment<T extends GraphObject> extends Fragment {
 		
 		/**
 		 * Called when the user selects or unselects graph objects in the picker.
+		 * @param fragment 
 		 */
 		void onSelectionChanged(PickerFragment<?> fragment);
 	}
@@ -793,6 +798,7 @@ public abstract class PickerFragment<T extends GraphObject> extends Fragment {
 		
 		/**
 		 * Called when the user clicks the Done button.
+		 * @param fragment 
 		 */
 		void onDoneButtonClicked(PickerFragment<?> fragment);
 	}
@@ -818,6 +824,7 @@ public abstract class PickerFragment<T extends GraphObject> extends Fragment {
 		protected final static int CACHED_RESULT_REFRESH_DELAY = 2 * 1000;
 		
 		protected GraphObjectPagingLoader<T> loader;
+		@SuppressWarnings("hiding")
 		protected GraphObjectAdapter<T> adapter;
 		
 		public void attach(GraphObjectAdapter<T> adapter) {

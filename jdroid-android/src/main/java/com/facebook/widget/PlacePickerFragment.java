@@ -236,7 +236,8 @@ public class PlacePickerFragment extends PickerFragment<GraphPlace> {
         return (selection != null && selection.size() > 0) ? selection.iterator().next() : null;
     }
 
-    public void setSettingsFromBundle(Bundle inState) {
+    @Override
+	public void setSettingsFromBundle(Bundle inState) {
         super.setSettingsFromBundle(inState);
         setPlacePickerSettingsFromBundle(inState);
     }
@@ -256,7 +257,8 @@ public class PlacePickerFragment extends PickerFragment<GraphPlace> {
         a.recycle();
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void onActivityCreated(final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
@@ -313,7 +315,8 @@ public class PlacePickerFragment extends PickerFragment<GraphPlace> {
         }
     }
 
-    void saveSettingsToBundle(Bundle outState) {
+    @Override
+	void saveSettingsToBundle(Bundle outState) {
         super.saveSettingsToBundle(outState);
 
         outState.putInt(RADIUS_IN_METERS_BUNDLE_KEY, radiusInMeters);

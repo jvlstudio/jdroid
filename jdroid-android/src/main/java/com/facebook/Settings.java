@@ -237,6 +237,7 @@ public final class Settings {
 	 * multiple installs being published to the graph.
 	 * 
 	 * @param context the current Context
+	 * @param applicationId 
 	 * @return returns false on error. Applications should retry until true is returned. Safe to call again after true
 	 *         is returned.
 	 */
