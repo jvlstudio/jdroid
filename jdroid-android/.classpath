@@ -4,7 +4,7 @@
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry exported="true" kind="src" path="/jdroid-java"/>
 	<classpathentry exported="true" kind="var" path="M2_REPO/android/compatibility/android-support-v4/r11/android-support-v4-r11.jar"/>
-	<classpathentry exported="true" kind="var" path="M2_REPO/android/ads/google-admob-ads-sdk/6.2.1/google-admob-ads-sdk-6.2.1.jar"/>
+	<classpathentry exported="true" kind="var" path="M2_REPO/android/ads/google-admob-ads-sdk/6.3.0/google-admob-ads-sdk-6.3.0.jar"/>
 	<classpathentry exported="true" kind="var" path="M2_REPO/javax/inject/javax.inject/1/javax.inject-1.jar" sourcepath="M2_REPO/javax/inject/javax.inject/1/javax.inject-1-sources.jar"/>
 	<classpathentry exported="true" kind="var" path="M2_REPO/android/mail/activation/1.0/activation-1.0.jar"/>
 	<classpathentry exported="true" kind="var" path="M2_REPO/android/mail/additionnal/1.0/additionnal-1.0.jar"/>
@@ -21,7 +21,7 @@
 	<classpathentry exported="true" kind="var" path="M2_REPO/org/slf4j/slf4j-android/1.6.1-RC1/slf4j-android-1.6.1-RC1.jar" sourcepath="M2_REPO/org/slf4j/slf4j-android/1.6.1-RC1/slf4j-android-1.6.1-RC1-sources.jar"/>
   	<classpathentry exported="true" kind="var" path="M2_REPO/android/twitter/twitter4j-core-android/2.2.6/twitter4j-core-android-2.2.6.jar"/>
 	<classpathentry exported="true" kind="var" path="M2_REPO/android/gcm/gcm-client/r3/gcm-client-r3.jar" sourcepath="M2_REPO/android/gcm/gcm-client/r3/gcm-client-r3-sources.jar"/>
-	<classpathentry exported="true" kind="var" path="M2_REPO/android/analytics/google-analytics-sdk/2.0Beta3/google-analytics-sdk-2.0Beta3.jar"/>
+	<classpathentry exported="true" kind="var" path="M2_REPO/android/analytics/google-analytics-sdk/2.0Beta4/google-analytics-sdk-2.0Beta4.jar"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="output" path="bin/classes"/>

@@ -13,6 +13,11 @@ import com.jdroid.android.AbstractApplication;
 
 public class BitmapUtils {
 	
+	public static Bitmap toBitmap(int resId, Integer maxWidth, Integer maxHeight) {
+		Bitmap bitmap = BitmapFactory.decodeResource(AbstractApplication.get().getResources(), resId);
+		return Bitmap.createScaledBitmap(bitmap, maxWidth, maxHeight, true);
+	}
+	
 	public static Bitmap toBitmap(InputStream input, Integer maxWidth, Integer maxHeight) {
 		
 		Options options = new Options();
